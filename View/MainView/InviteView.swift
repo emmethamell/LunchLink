@@ -10,18 +10,16 @@ import SwiftUI
 struct InviteView: View {
 
     var body: some View {
-        NavigationView {
-            VStack {
-                //content of
-                Text("HELLO")
+        VStack(spacing: 20) {
+            NavigationLink(destination: ProfileView()){
+                Image(systemName: "person.circle")
+                    .resizable()
+                    .frame(width:30, height:30)
             }
-            
-            .navigationBarItems(
-                trailing: NavigationLink(destination: ProfileView()) {
-                    Image(systemName: "gear")
-                }
-            )
         }
+        .hAlign(.trailing)
+        .vAlign(.top)
+        .padding(20)
     }
 }
 
