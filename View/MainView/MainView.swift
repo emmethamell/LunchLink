@@ -8,14 +8,29 @@
 import SwiftUI
 
 struct MainView: View {
+
     var body: some View {
-        //invite page
-        Text("main view")
+        
+        TabView{
+            Text("Friend activities")
+                .tabItem {
+                    Image(systemName: "person.3")
+                    Text("Friends")
+                }
+            
+            InviteView()
+                .tabItem {
+                    Image(systemName: "hand.wave.fill")
+                    Text("Invite")
+                }
+
+            
+        }
     }
 }
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MainView()
     }
 }
