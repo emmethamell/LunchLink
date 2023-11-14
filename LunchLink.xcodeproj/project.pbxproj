@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A14F84CA2B03046200349A9B /* ActivitySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F84C92B03046200349A9B /* ActivitySelectionView.swift */; };
+		A14F84CC2B0307BD00349A9B /* GroupSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F84CB2B0307BD00349A9B /* GroupSelectionView.swift */; };
 		A1AC891A2B01D18200831625 /* InviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC89192B01D18100831625 /* InviteView.swift */; };
 		A1AC891D2B01D54400831625 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC891C2B01D54400831625 /* ProfileView.swift */; };
 		A1AC891F2B02D9F400831625 /* ReusableProfileContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC891E2B02D9F400831625 /* ReusableProfileContent.swift */; };
 		A1AC89222B02DC1400831625 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A1AC89212B02DC1400831625 /* SDWebImageSwiftUI */; };
+		A1AC89242B02E52700831625 /* CreateNewInvite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC89232B02E52600831625 /* CreateNewInvite.swift */; };
+		A1AC89262B02E58500831625 /* Invite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC89252B02E58500831625 /* Invite.swift */; };
 		A1C985ED2AE617DE00314A7E /* LunchLinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C985EC2AE617DE00314A7E /* LunchLinkApp.swift */; };
 		A1C985EF2AE617DE00314A7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C985EE2AE617DE00314A7E /* ContentView.swift */; };
 		A1C985F12AE617E000314A7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1C985F02AE617E000314A7E /* Assets.xcassets */; };
@@ -29,9 +33,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A14F84C92B03046200349A9B /* ActivitySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySelectionView.swift; sourceTree = "<group>"; };
+		A14F84CB2B0307BD00349A9B /* GroupSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSelectionView.swift; sourceTree = "<group>"; };
+		A14F84CD2B030C3800349A9B /* LunchLink-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "LunchLink-Info.plist"; sourceTree = "<group>"; };
 		A1AC89192B01D18100831625 /* InviteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteView.swift; sourceTree = "<group>"; };
 		A1AC891C2B01D54400831625 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A1AC891E2B02D9F400831625 /* ReusableProfileContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProfileContent.swift; sourceTree = "<group>"; };
+		A1AC89232B02E52600831625 /* CreateNewInvite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewInvite.swift; sourceTree = "<group>"; };
+		A1AC89252B02E58500831625 /* Invite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invite.swift; sourceTree = "<group>"; };
 		A1C985E92AE617DE00314A7E /* LunchLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LunchLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C985EC2AE617DE00314A7E /* LunchLinkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchLinkApp.swift; sourceTree = "<group>"; };
 		A1C985EE2AE617DE00314A7E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -62,6 +71,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A14F84C82B03043F00349A9B /* Selections */ = {
+			isa = PBXGroup;
+			children = (
+				A14F84C92B03046200349A9B /* ActivitySelectionView.swift */,
+				A14F84CB2B0307BD00349A9B /* GroupSelectionView.swift */,
+			);
+			path = Selections;
+			sourceTree = "<group>";
+		};
 		A1AC891B2B01D53700831625 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +108,7 @@
 		A1C985EB2AE617DE00314A7E /* LunchLink */ = {
 			isa = PBXGroup;
 			children = (
+				A14F84CD2B030C3800349A9B /* LunchLink-Info.plist */,
 				A1C986002AE61BDC00314A7E /* Model */,
 				A1C985FF2AE61BCE00314A7E /* View */,
 				A1C985EC2AE617DE00314A7E /* LunchLinkApp.swift */,
@@ -112,6 +131,7 @@
 		A1C985FF2AE61BCE00314A7E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A14F84C82B03043F00349A9B /* Selections */,
 				A1AC891B2B01D53700831625 /* Profile */,
 				A1C986122AEF6D8B00314A7E /* Helpers */,
 				A1C9860F2AEF6CAB00314A7E /* MainView */,
@@ -124,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				A1C9860A2AE6E3A200314A7E /* User.swift */,
+				A1AC89252B02E58500831625 /* Invite.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -150,6 +171,7 @@
 				A1C986152AEF6E5100314A7E /* MainView.swift */,
 				A1AC89192B01D18100831625 /* InviteView.swift */,
 				A1AC891E2B02D9F400831625 /* ReusableProfileContent.swift */,
+				A1AC89232B02E52600831625 /* CreateNewInvite.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -247,9 +269,13 @@
 			files = (
 				A1C9860B2AE6E3A200314A7E /* User.swift in Sources */,
 				A1C986162AEF6E5100314A7E /* MainView.swift in Sources */,
+				A14F84CA2B03046200349A9B /* ActivitySelectionView.swift in Sources */,
 				A1AC891D2B01D54400831625 /* ProfileView.swift in Sources */,
 				A1AC891F2B02D9F400831625 /* ReusableProfileContent.swift in Sources */,
+				A1AC89262B02E58500831625 /* Invite.swift in Sources */,
+				A14F84CC2B0307BD00349A9B /* GroupSelectionView.swift in Sources */,
 				A1C986022AE61C1000314A7E /* LoginView.swift in Sources */,
+				A1AC89242B02E52700831625 /* CreateNewInvite.swift in Sources */,
 				A1C985EF2AE617DE00314A7E /* ContentView.swift in Sources */,
 				A1AC891A2B01D18200831625 /* InviteView.swift in Sources */,
 				A1C986142AEF6DA900314A7E /* View+Extensions.swift in Sources */,
@@ -387,11 +413,15 @@
 				DEVELOPMENT_TEAM = AK744442NQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "LunchLink-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -416,11 +446,15 @@
 				DEVELOPMENT_TEAM = AK744442NQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "LunchLink-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

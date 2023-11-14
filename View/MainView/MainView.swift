@@ -10,7 +10,7 @@ import SwiftUI
 struct MainView: View {
     @State var tabSelection: Tabs = .tab1
     var body: some View {
-        NavigationView {
+        NavigationStack {
             TabView(selection: $tabSelection) {
                 Text("Friend activities")
                     .tabItem {

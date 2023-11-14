@@ -4,13 +4,16 @@
 //
 //  Created by Emmet Hamell on 10/30/23.
 //
-
 import SwiftUI
 import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
 import PhotosUI
 
+//TODO: When choosing an image when registering, allow the user to take a photo
+//TODO: Look up privacy laws, maybe ask the user if you can access their photos or something IDK
+//FIXME: Disable allowing users to choose videos as profile pictures, it doesnt work
+//FIXME: Keyboard doesn't show up for register view when running on phone
 //Register View
 struct RegisterView: View{
     // User details
@@ -30,7 +33,6 @@ struct RegisterView: View{
     @AppStorage("user_profile_url") var profileURL: URL?
     @AppStorage("user_name") var userNameStored: String = ""
     @AppStorage("user_UID") var userUID: String = ""
-    
     var body: some View{
         VStack(spacing: 10) {
             Text("Register Account")
@@ -49,7 +51,6 @@ struct RegisterView: View{
                 
                 HelperView()
             }
-            
             
             //register button
             HStack{

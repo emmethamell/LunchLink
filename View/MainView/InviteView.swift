@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct InviteView: View {
+    @State private var selectedActivity: String = "Choose"
+    @State private var selectedGroup: String = "Choose"
+
 
     var body: some View {
         VStack {
@@ -23,16 +26,45 @@ struct InviteView: View {
             
             //Contents in this stack
             VStack {
-                Text("Select Actiity")
-                Text("Select Friends")
-                Text("Select Location")
-                Text("GO")
+                    VStack(alignment: .center, spacing: 20) {
+                        
+                        Text("What do you want to do?")
+                            .font(.title)
+                        
+                        NavigationLink(destination: ActivitySelectionView(selectedActivity: $selectedActivity).toolbar(.hidden)) {
+                            Text(selectedActivity)
+                                .font(.title)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.black)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+
+                            Text("With who?")
+                            .font(.title)
+
+                        NavigationLink(destination: GroupSelectionView(selectedGroup: $selectedGroup).toolbar(.hidden)) {
+                                Text(selectedGroup)
+                                    .font(.title)
+                                    .padding()
+                                    .frame(maxWidth: .infinity)
+                                    .background(Color.black)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(10)
+                            }
+                        
+                        Spacer()
+                    }
+                    .padding()
             }
+            // end of stack
 
         }
         .vAlign(.top)
     }
 }
+
 
 struct InviteView_Previews: PreviewProvider {
     static var previews: some View {
