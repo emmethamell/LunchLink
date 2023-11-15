@@ -10,8 +10,12 @@ import SwiftUI
 struct InviteView: View {
     @State private var selectedActivity: String = "Choose"
     @State private var selectedGroup: String = "Choose"
-
-
+    
+    @State private var postText: String = ""
+    
+    @AppStorage("user_profile_url") private var profileURL: URL?
+    @AppStorage("user_name") private var userName: String = ""
+    @AppStorage("user_UID") private var userUID: String = ""
     var body: some View {
         VStack {
             VStack {
@@ -54,9 +58,19 @@ struct InviteView: View {
                                     .cornerRadius(10)
                             }
                         
-                        Spacer()
+                       
                     }
                     .padding()
+                
+                Button(action: {}) {
+                    Text("Post")
+                        .font(.callout)
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 6)
+                        .background(.black,in: Capsule())
+                }
+                .disableWithOpacity(selectedActivity == "Choose" || selectedGroup == "Choose")
             }
             // end of stack
 
