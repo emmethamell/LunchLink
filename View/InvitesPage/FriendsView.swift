@@ -8,14 +8,23 @@
 import SwiftUI
 
 struct FriendsView: View {
+    
     @State private var recentInvites: [Invite] = []
     
     var body: some View {
-        NavigationStack{
+        VStack(alignment: .leading){
+            
+            Text("Your Invites")
+                .font(.title)
+                .padding()
+                .bold()
+
             ReusableInviteView(invites: $recentInvites)
-                .hAlign(.center).vAlign(.center)
+                .hAlign(.center)
+                .vAlign(.center)
         }
-        .navigationTitle("Invites")
+        
+
     }
 }
 
