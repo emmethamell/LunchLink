@@ -10,10 +10,12 @@ import FirebaseFirestore
 import FirebaseStorage
 import PhotosUI
 
-//TODO: When choosing an image when registering, allow the user to take a photo
+//TODO: When choosing an image when registering, allow the user to take a photo,
+//TODO: Also, allow the user to crop the photo
 //TODO: Look up privacy laws, maybe ask the user if you can access their photos or something IDK
 //FIXME: Disable allowing users to choose videos as profile pictures, it doesnt work
-//FIXME: Keyboard doesn't show up for register view when running on phone
+
+//fixed: Keyboard doesn't show up for register view when running on phone
 //Register View
 struct RegisterView: View{
     // User details
@@ -44,13 +46,14 @@ struct RegisterView: View{
                 .hAlign(.leading)
             
             // for smaller size optimization
-            ViewThatFits {
+            //removing the view that fits got rid of the issue with the keyboard not showing up
+         //   ViewThatFits {
                 ScrollView(.vertical, showsIndicators: false) {
                     HelperView()
                 }
                 
-                HelperView()
-            }
+              //  HelperView()
+          //  }
             
             //register button
             HStack{
@@ -64,7 +67,7 @@ struct RegisterView: View{
                 .foregroundColor(.black)
             }
             .font(.callout)
-            .vAlign(.bottom)
+            //.vAlign(.bottom) removing this fixed whitespace above keyboard
         }
         .vAlign(.top)
         .padding(15)

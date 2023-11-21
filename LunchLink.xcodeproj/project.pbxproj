@@ -7,13 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A12085FF2B054AE000F6FFC4 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12085FE2B054AE000F6FFC4 /* FriendsView.swift */; };
+		A12086062B05C93A00F6FFC4 /* ReusableInviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12086052B05C93A00F6FFC4 /* ReusableInviteView.swift */; };
+		A12086092B0691F800F6FFC4 /* InviteCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12086082B0691F800F6FFC4 /* InviteCardView.swift */; };
+		A13ACE852B08428200AF5B2F /* SearchUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13ACE842B08428200AF5B2F /* SearchUserView.swift */; };
+		A14CF5B22B0ADCBE006E8BCD /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = A14CF5B12B0ADCBE006E8BCD /* SwiftMessages */; };
+		A14CF5B82B0C0F7F006E8BCD /* FriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14CF5B72B0C0F7F006E8BCD /* FriendRequest.swift */; };
 		A14F84CA2B03046200349A9B /* ActivitySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F84C92B03046200349A9B /* ActivitySelectionView.swift */; };
 		A14F84CC2B0307BD00349A9B /* GroupSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F84CB2B0307BD00349A9B /* GroupSelectionView.swift */; };
 		A1AC891A2B01D18200831625 /* InviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC89192B01D18100831625 /* InviteView.swift */; };
 		A1AC891D2B01D54400831625 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC891C2B01D54400831625 /* ProfileView.swift */; };
 		A1AC891F2B02D9F400831625 /* ReusableProfileContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC891E2B02D9F400831625 /* ReusableProfileContent.swift */; };
 		A1AC89222B02DC1400831625 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A1AC89212B02DC1400831625 /* SDWebImageSwiftUI */; };
-		A1AC89242B02E52700831625 /* CreateNewInvite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC89232B02E52600831625 /* CreateNewInvite.swift */; };
 		A1AC89262B02E58500831625 /* Invite.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC89252B02E58500831625 /* Invite.swift */; };
 		A1C985ED2AE617DE00314A7E /* LunchLinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C985EC2AE617DE00314A7E /* LunchLinkApp.swift */; };
 		A1C985EF2AE617DE00314A7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C985EE2AE617DE00314A7E /* ContentView.swift */; };
@@ -30,16 +35,34 @@
 		A1C986112AEF6CF000314A7E /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C986102AEF6CF000314A7E /* RegisterView.swift */; };
 		A1C986142AEF6DA900314A7E /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C986132AEF6DA900314A7E /* View+Extensions.swift */; };
 		A1C986162AEF6E5100314A7E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C986152AEF6E5100314A7E /* MainView.swift */; };
+		A1EB9D482B0C326C00A26252 /* Friendship Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EB9D472B0C326C00A26252 /* Friendship Button.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A14CF5B62B0ADCDD006E8BCD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		A12085FE2B054AE000F6FFC4 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
+		A12086052B05C93A00F6FFC4 /* ReusableInviteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableInviteView.swift; sourceTree = "<group>"; };
+		A12086082B0691F800F6FFC4 /* InviteCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteCardView.swift; sourceTree = "<group>"; };
+		A13ACE842B08428200AF5B2F /* SearchUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserView.swift; sourceTree = "<group>"; };
+		A14CF5B72B0C0F7F006E8BCD /* FriendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequest.swift; sourceTree = "<group>"; };
 		A14F84C92B03046200349A9B /* ActivitySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySelectionView.swift; sourceTree = "<group>"; };
 		A14F84CB2B0307BD00349A9B /* GroupSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSelectionView.swift; sourceTree = "<group>"; };
 		A14F84CD2B030C3800349A9B /* LunchLink-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "LunchLink-Info.plist"; sourceTree = "<group>"; };
 		A1AC89192B01D18100831625 /* InviteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteView.swift; sourceTree = "<group>"; };
 		A1AC891C2B01D54400831625 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A1AC891E2B02D9F400831625 /* ReusableProfileContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProfileContent.swift; sourceTree = "<group>"; };
-		A1AC89232B02E52600831625 /* CreateNewInvite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewInvite.swift; sourceTree = "<group>"; };
 		A1AC89252B02E58500831625 /* Invite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Invite.swift; sourceTree = "<group>"; };
 		A1C985E92AE617DE00314A7E /* LunchLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LunchLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1C985EC2AE617DE00314A7E /* LunchLinkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LunchLinkApp.swift; sourceTree = "<group>"; };
@@ -53,6 +76,7 @@
 		A1C986102AEF6CF000314A7E /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		A1C986132AEF6DA900314A7E /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		A1C986152AEF6E5100314A7E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		A1EB9D472B0C326C00A26252 /* Friendship Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friendship Button.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +88,7 @@
 				A1C985FE2AE61B8400314A7E /* FirebaseAuth in Frameworks */,
 				A1C986092AE635F500314A7E /* FirebaseStorage in Frameworks */,
 				A1C986052AE635E000314A7E /* FirebaseFirestore in Frameworks */,
+				A14CF5B22B0ADCBE006E8BCD /* SwiftMessages in Frameworks */,
 				A1C986072AE635EC00314A7E /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +96,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A120860A2B06B95D00F6FFC4 /* InvitesPage */ = {
+			isa = PBXGroup;
+			children = (
+				A12086082B0691F800F6FFC4 /* InviteCardView.swift */,
+				A12086052B05C93A00F6FFC4 /* ReusableInviteView.swift */,
+				A12085FE2B054AE000F6FFC4 /* FriendsView.swift */,
+				A1EB9D472B0C326C00A26252 /* Friendship Button.swift */,
+			);
+			path = InvitesPage;
+			sourceTree = "<group>";
+		};
+		A120860B2B06B99900F6FFC4 /* CreateInviteView */ = {
+			isa = PBXGroup;
+			children = (
+				A1AC89192B01D18100831625 /* InviteView.swift */,
+			);
+			path = CreateInviteView;
+			sourceTree = "<group>";
+		};
 		A14F84C82B03043F00349A9B /* Selections */ = {
 			isa = PBXGroup;
 			children = (
@@ -84,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				A1AC891C2B01D54400831625 /* ProfileView.swift */,
+				A1AC891E2B02D9F400831625 /* ReusableProfileContent.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -131,6 +176,9 @@
 		A1C985FF2AE61BCE00314A7E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A1EB9D492B0C609D00A26252 /* SearchUser */,
+				A120860B2B06B99900F6FFC4 /* CreateInviteView */,
+				A120860A2B06B95D00F6FFC4 /* InvitesPage */,
 				A14F84C82B03043F00349A9B /* Selections */,
 				A1AC891B2B01D53700831625 /* Profile */,
 				A1C986122AEF6D8B00314A7E /* Helpers */,
@@ -145,6 +193,7 @@
 			children = (
 				A1C9860A2AE6E3A200314A7E /* User.swift */,
 				A1AC89252B02E58500831625 /* Invite.swift */,
+				A14CF5B72B0C0F7F006E8BCD /* FriendRequest.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -169,9 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				A1C986152AEF6E5100314A7E /* MainView.swift */,
-				A1AC89192B01D18100831625 /* InviteView.swift */,
-				A1AC891E2B02D9F400831625 /* ReusableProfileContent.swift */,
-				A1AC89232B02E52600831625 /* CreateNewInvite.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -185,6 +231,14 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		A1EB9D492B0C609D00A26252 /* SearchUser */ = {
+			isa = PBXGroup;
+			children = (
+				A13ACE842B08428200AF5B2F /* SearchUserView.swift */,
+			);
+			path = SearchUser;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -195,6 +249,7 @@
 				A1C985E52AE617DE00314A7E /* Sources */,
 				A1C985E62AE617DE00314A7E /* Frameworks */,
 				A1C985E72AE617DE00314A7E /* Resources */,
+				A14CF5B62B0ADCDD006E8BCD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -207,6 +262,7 @@
 				A1C986062AE635EC00314A7E /* FirebaseFirestoreSwift */,
 				A1C986082AE635F500314A7E /* FirebaseStorage */,
 				A1AC89212B02DC1400831625 /* SDWebImageSwiftUI */,
+				A14CF5B12B0ADCBE006E8BCD /* SwiftMessages */,
 			);
 			productName = LunchLink;
 			productReference = A1C985E92AE617DE00314A7E /* LunchLink.app */;
@@ -239,6 +295,7 @@
 			packageReferences = (
 				A1C985FC2AE61B8400314A7E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A1AC89202B02DC1400831625 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				A12086002B05C62500F6FFC4 /* XCRemoteSwiftPackageReference "SwiftMessages" */,
 			);
 			productRefGroup = A1C985EA2AE617DE00314A7E /* Products */;
 			projectDirPath = "";
@@ -267,15 +324,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A12086062B05C93A00F6FFC4 /* ReusableInviteView.swift in Sources */,
 				A1C9860B2AE6E3A200314A7E /* User.swift in Sources */,
 				A1C986162AEF6E5100314A7E /* MainView.swift in Sources */,
+				A14CF5B82B0C0F7F006E8BCD /* FriendRequest.swift in Sources */,
+				A13ACE852B08428200AF5B2F /* SearchUserView.swift in Sources */,
+				A12085FF2B054AE000F6FFC4 /* FriendsView.swift in Sources */,
 				A14F84CA2B03046200349A9B /* ActivitySelectionView.swift in Sources */,
 				A1AC891D2B01D54400831625 /* ProfileView.swift in Sources */,
+				A12086092B0691F800F6FFC4 /* InviteCardView.swift in Sources */,
 				A1AC891F2B02D9F400831625 /* ReusableProfileContent.swift in Sources */,
+				A1EB9D482B0C326C00A26252 /* Friendship Button.swift in Sources */,
 				A1AC89262B02E58500831625 /* Invite.swift in Sources */,
 				A14F84CC2B0307BD00349A9B /* GroupSelectionView.swift in Sources */,
 				A1C986022AE61C1000314A7E /* LoginView.swift in Sources */,
-				A1AC89242B02E52700831625 /* CreateNewInvite.swift in Sources */,
 				A1C985EF2AE617DE00314A7E /* ContentView.swift in Sources */,
 				A1AC891A2B01D18200831625 /* InviteView.swift in Sources */,
 				A1C986142AEF6DA900314A7E /* View+Extensions.swift in Sources */,
@@ -407,6 +469,7 @@
 		A1C985F82AE617E000314A7E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -440,6 +503,7 @@
 		A1C985F92AE617E000314A7E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -494,6 +558,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A12086002B05C62500F6FFC4 /* XCRemoteSwiftPackageReference "SwiftMessages" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftKickMobile/SwiftMessages.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.9;
+			};
+		};
 		A1AC89202B02DC1400831625 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -513,6 +585,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A14CF5B12B0ADCBE006E8BCD /* SwiftMessages */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A12086002B05C62500F6FFC4 /* XCRemoteSwiftPackageReference "SwiftMessages" */;
+			productName = SwiftMessages;
+		};
 		A1AC89212B02DC1400831625 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A1AC89202B02DC1400831625 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;

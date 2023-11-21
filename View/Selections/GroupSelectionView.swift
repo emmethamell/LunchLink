@@ -10,6 +10,8 @@ import SwiftUI
 struct GroupSelectionView: View {
     @Binding var selectedGroup: String
     //TODO: "groups" list should have an option "everyone", and other custom groups
+    //you can break this up into "group" objects?
+    //for every user, store when they create a new group, for everyone, just send to all friends
     @State private var groups = ["Everyone", "Group 2", "Group 3", "Group 4", "Group 5", "Group 6"]
     @Environment(\.dismiss) private var dismiss
     var body: some View {

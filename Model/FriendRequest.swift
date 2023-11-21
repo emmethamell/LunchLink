@@ -6,13 +6,24 @@
 //
 
 import SwiftUI
+import FirebaseFirestoreSwift
 
-struct FriendRequest: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+struct FriendRequest: Identifiable, Codable, Equatable, Hashable {
+    @DocumentID var id: String? //for firestore, automatically gets created
+    var senderID: String
+    var receiverID: String
+    var status: RequestStatus
+    
+    enum CodingKeys: CodingKey{
+        case id
+        case senderID
+        case receiverID
+        case status
     }
-}
-
-#Preview {
-    FriendRequest()
+    
+    enum RequestStatus: String, Codable {
+        case pending
+        case accepted
+        case declined
+    }
 }

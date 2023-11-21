@@ -8,7 +8,7 @@
 import SwiftUI
 import Firebase
 import SwiftMessages
-
+import FirebaseFirestore
 
 
 struct InviteView: View {
@@ -28,14 +28,7 @@ struct InviteView: View {
     @State private var showError: Bool = false
     @State private var errorMessage: String = ""
     
-    //TODO: When user clicks post, create an invite object and save it in firestore
-    // What needs to be saved to for "invite" in firestore
-    // - Selected activity
-    // - Selected group
-    // - Username
-    // - Profile Pic
-    // - Accepts
-    // - Deny's
+
     var body: some View {
         VStack {
             VStack {

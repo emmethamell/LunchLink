@@ -7,45 +7,56 @@
 
 import SwiftUI
 import Firebase
+import FirebaseFirestore
 
 struct ReusableInviteView: View {
+    var basedOnUID: Bool = false
+    var uid: String = ""
     @Binding var invites: [Invite]
     //View Properties
-    @State var isFetching: Bool = true
+    @State private var isFetching: Bool = true
+    //implement pagination
+    @State private var paginationDoc: QueryDocumentSnapshot?
     
     @AppStorage("user_name") private var userName: String = ""
+    
     var body: some View {
         
         ScrollView(.vertical, showsIndicators: false){
-            LazyVStack{
-                if isFetching{
-                    ProgressView()
-                        .padding(.top, 30)
-                }else{
-                    if invites.isEmpty{
-                        //user has no invites
-                        Text("You have no invites")
-                            .font(.caption)
-                            .foregroundColor(.gray)
+                LazyVStack{
+                    if isFetching{
+                        ProgressView()
                             .padding(.top, 30)
-                        
                     }else{
-                        Invites()
+                        if invites.isEmpty{
+                            //user has no invites
+                            Text("You have no invites")
+                                .font(.caption)
+                                .foregroundColor(.gray)
+                                .padding(.top, 30)
+                            
+                        }else{
+                            Invites()
+                        }
                     }
                 }
+                .padding(15)
+        }
+            .refreshable{
+                //disable refresh for uid based posts
+                guard !basedOnUID else{return}
+                
+                isFetching = true
+                invites = []
+                //resetting pagination doc
+                paginationDoc = nil
+                await fetchInvites()
             }
-            .padding(15)
-        }
-        .refreshable{
-            isFetching = true
-            invites = []
-            await fetchInvites()
-        }
-        .task {
+            .task {
+                guard invites.isEmpty else{return}
+                await fetchInvites()
+            }
         
-            guard invites.isEmpty else{return}
-            await fetchInvites()
-        }
     }
     
     //Displaying fetched invites
@@ -66,6 +77,14 @@ struct ReusableInviteView: View {
                     invites.removeAll{invite.id == $0.id}
                 }
             }
+            .onAppear{
+                //when last post appears, fetch new post
+                if invite.id == invites.last?.id && paginationDoc != nil{
+                    Task{
+                        await fetchInvites()
+                    }
+                }
+            }
             
             Divider()
                 .padding(.horizontal, -15)
@@ -73,18 +92,36 @@ struct ReusableInviteView: View {
     }
     
     //fetching invites
+   
     func fetchInvites()async{
         do{
             var query: Query!
-            query = Firestore.firestore().collection("Invites")
-                .order(by: "publishedDate", descending: true)
-                .limit(to: 20)
+            //implement pagination
+            if let paginationDoc{
+                query = Firestore.firestore().collection("Invites")
+                    .order(by: "publishedDate", descending: true)
+                    .start(afterDocument: paginationDoc)
+                    .limit(to: 20)
+            }else {
+             
+                query = Firestore.firestore().collection("Invites")
+                    .order(by: "publishedDate", descending: true)
+                    .limit(to: 20)
+            }
+            //new query for UID based fetch
+            if basedOnUID{
+                query = query
+                    .whereField("userUID" , isEqualTo: uid)
+            }
+            
             let docs = try await query.getDocuments()
+            print("fetched \(docs.documents.count)")
             let fetchedInvites = docs.documents.compactMap{ doc -> Invite? in
                 try? doc.data(as: Invite.self)
             }
             await MainActor.run(body: {
-                invites = fetchedInvites
+                invites.append(contentsOf: fetchedInvites)
+                paginationDoc = docs.documents.last
                 isFetching = false
             })
         }catch{

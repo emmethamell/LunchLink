@@ -12,19 +12,29 @@ struct FriendsView: View {
     @State private var recentInvites: [Invite] = []
     
     var body: some View {
+        
         VStack(alignment: .leading){
-            
-            Text("Your Invites")
-                .font(.title)
+            HStack{
+                Text("Your Invites")
+                    .font(.title)
+                    .padding()
+                    .bold()
+                Spacer()
+                NavigationLink {
+                    SearchUserView()
+                }label:{
+                    Image(systemName: "magnifyingglass")
+                        .tint(.black)
+                        .scaleEffect(0.9)
+                }
                 .padding()
-                .bold()
-
+                
+            }
+            
             ReusableInviteView(invites: $recentInvites)
                 .hAlign(.center)
                 .vAlign(.center)
         }
-        
-
     }
 }
 

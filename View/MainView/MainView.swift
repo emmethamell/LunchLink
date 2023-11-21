@@ -12,19 +12,30 @@ struct MainView: View {
     var body: some View {
         NavigationStack {
             TabView(selection: $tabSelection) {
-                Text("Friend activities")
+                FriendsView()
                     .tabItem {
                         Image(systemName: "person.3")
                         Text("Friends")
                     }
+
                     .tag(Tabs.tab1)
-                InviteView()
+                InviteView{_ in}
                     .tabItem {
                         Image(systemName: "hand.wave.fill")
                         Text("Invite")
                 }
                     .tag(Tabs.tab2)
             }
+            .onAppear {
+                            // correct the transparency bug for Tab bars
+                            let tabBarAppearance = UITabBarAppearance()
+                            tabBarAppearance.configureWithOpaqueBackground()
+                            UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+                            // correct the transparency bug for Navigation bars
+                            let navigationBarAppearance = UINavigationBarAppearance()
+                            navigationBarAppearance.configureWithOpaqueBackground()
+                            UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance
+                        }
         }
     }
     enum Tabs {

@@ -9,11 +9,10 @@ import SwiftUI
 import FirebaseFirestoreSwift
 
 //Invite model
-struct Invite: Identifiable, Codable {
+struct Invite: Identifiable, Codable, Equatable, Hashable {
     @DocumentID var id: String?
-    var text: String
-    var imageURL: URL?
-    var imageReferenceID: String = ""
+    var selectedActivity: String
+    var selectedGroup: String
     var publishedDate: Date = Date()
     var likedIDs: [String] = []
     var dislikedIDs:[String] = []
@@ -24,9 +23,8 @@ struct Invite: Identifiable, Codable {
     
     enum CodingKeys: CodingKey{
         case id
-        case text
-        case imageURL
-        case imageReferenceID
+        case selectedActivity
+        case selectedGroup
         case publishedDate
         case likedIDs
         case dislikedIDs

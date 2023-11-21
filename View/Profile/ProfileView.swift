@@ -14,7 +14,7 @@ struct ProfileView: View {
     //My Profile Data
     @State private var myProfile : User?
     @AppStorage("log_status") var logStatus: Bool = false
-    
+    @AppStorage("user_UID") var userUID: String = ""
     //View properties
     @State var errorMessage: String = ""
     @State var showError: Bool = false
@@ -24,7 +24,7 @@ struct ProfileView: View {
         NavigationStack {
             VStack {
                 if let myProfile{
-                    ReusableProfileContent(user: myProfile)
+                    ReusableProfileContent(user: myProfile, userUID: userUID)
                         //MARK: Make view refreshable, add this to friends page
                         .refreshable {
                             //Refresh user data
@@ -42,7 +42,6 @@ struct ProfileView: View {
                         //logout
                         //delete account
                         Button("Logout", action: logOutUser)
-                        
                         Button("Delete Account", role: .destructive, action: deleteAccount)
                     } label: {
                         Image(systemName: "ellipsis")
@@ -113,6 +112,7 @@ struct ProfileView: View {
         })
     }
 }
+    
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {

@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import Firebase
+import FirebaseStorage
 import FirebaseFirestore
 
 struct SearchUserView: View {
     //view properties
     @State private var fetchedUsers: [User] = []
     @State private var searchText: String = ""
+    @State private var myProfile : User?
     @AppStorage("user_UID") private var userUID: String = ""
     @Environment(\.dismiss) private var dismiss
 
@@ -51,9 +54,26 @@ struct SearchUserView: View {
                     .tint(.black)
                 }
             }
+            .task {
+                //this modifier is like onappear
+                //so fetching for the first time only
+                if myProfile != nil{return} //task will be called any time we open tab, so we need to limit it to the first time (initial fetch)
+                //initial fetch
+                await fetchUserData()
+            }
 
         }
     }
+    
+    func fetchUserData()async{
+        guard let userUID = Auth.auth().currentUser?.uid else{return}
+        guard let user = try? await Firestore.firestore().collection("Users").document(userUID).getDocument(as: User.self)
+        else{return}
+        await MainActor.run(body: {
+            myProfile = user
+        })
+    }
+    
     func searchUsers()async{
         do{
             

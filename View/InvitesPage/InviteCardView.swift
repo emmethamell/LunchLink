@@ -9,6 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 import Firebase
 import FirebaseStorage
+import FirebaseFirestore
 
 struct InviteCardView: View {
     var invite: Invite
@@ -17,6 +18,7 @@ struct InviteCardView: View {
     var onDelete: ()->()
     
     @AppStorage("user_UID") private var userUID: String = ""
+    
     @State private var docListner: ListenerRegistration?
     
     var body: some View {
@@ -55,7 +57,6 @@ struct InviteCardView: View {
                 .offset(x: 8)
             }
         })
-
 
         .onAppear{
             //add only once
@@ -102,13 +103,13 @@ struct InviteCardView: View {
                 .foregroundColor(.gray)
             Button(action: denyInvite) {
                 if invite.dislikedIDs.contains(userUID){
-                    Text("deny")
+                    Text("decline")
                         .foregroundColor(.white)
                         .padding(10)
                         .background(Color.red)
                         .cornerRadius(8)
                 } else {
-                    Text("deny")
+                    Text("decline")
                 }
             }
             .padding(.leading, 25)
