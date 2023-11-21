@@ -1,18 +1,18 @@
 //
-//  SearchUserView.swift
+//  Friendship Button.swift
 //  LunchLink
 //
-//  Created by Emmet Hamell on 11/17/23.
+//  Created by Emmet Hamell on 11/20/23.
 //
 
 import SwiftUI
 
-struct SearchUserView: View {
+struct Friendship_Button: View {
     var body: some View {
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }
 
 #Preview {
-    SearchUserView()
+    Friendship_Button()
 }
