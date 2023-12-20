@@ -25,6 +25,7 @@ struct Friendship_Button: View {
     var onDeclineFriendRequest: () -> Void
     @Binding var buttonMessage: String
     
+    
     var body: some View {
         //split up button, it should be split for when someone requested someone else
         if buttonMessage != "This person wants to be your friend!" {
@@ -61,6 +62,7 @@ struct Friendship_Button: View {
                 }
                 .buttonStyle(CustomButtonStyle())
             }
+            
         }
     }
     

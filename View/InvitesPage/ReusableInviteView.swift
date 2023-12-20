@@ -20,6 +20,7 @@ struct ReusableInviteView: View {
     
     @AppStorage("user_name") private var userName: String = ""
     
+    
     var body: some View {
         
         ScrollView(.vertical, showsIndicators: false){
@@ -59,11 +60,12 @@ struct ReusableInviteView: View {
         
     }
     
+    
     //Displaying fetched invites
     @ViewBuilder
     func Invites()->some View{
         ForEach(invites){invite in
-            InviteCardView(invite: invite) {updatedInvite in
+            InviteCardView(invite: invite) {updatedInvite in    //INVITE CARD VIEW -> updatedInvite passed to onUpdate callback
                 //updating post in the array
                 if let index = invites.firstIndex(where: { invite in
                     invite.id == updatedInvite.id

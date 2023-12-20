@@ -102,7 +102,6 @@
 				A12086082B0691F800F6FFC4 /* InviteCardView.swift */,
 				A12086052B05C93A00F6FFC4 /* ReusableInviteView.swift */,
 				A12085FE2B054AE000F6FFC4 /* FriendsView.swift */,
-				A1EB9D472B0C326C00A26252 /* Friendship Button.swift */,
 			);
 			path = InvitesPage;
 			sourceTree = "<group>";
@@ -128,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				A1AC891C2B01D54400831625 /* ProfileView.swift */,
+				A1EB9D472B0C326C00A26252 /* Friendship Button.swift */,
 				A1AC891E2B02D9F400831625 /* ReusableProfileContent.swift */,
 			);
 			path = Profile;

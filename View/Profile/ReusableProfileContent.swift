@@ -58,6 +58,7 @@ struct ReusableProfileContent: View {
 
                 
                 //if the user is NOT us, we need to add a button to make friend requests
+                //TODO: add callback functions to friendship button for update. add doc listner to friendship button so any changes in firestore show
                 if userUID != user.userUID {
                     Friendship_Button(
                         user: user,
@@ -89,7 +90,11 @@ struct ReusableProfileContent: View {
                     .hAlign(.leading)
                     .padding(.vertical, 15)
                 
-                ReusableInviteView(basedOnUID: true, uid: user.userUID, invites: $fetchedInvites)
+                if user.userUID != userUID && friendRequestStatus != .accepted{
+                    Text("Add " + user.username + " as a friend to see history")
+                } else {
+                    ReusableInviteView(basedOnUID: true, uid: user.userUID, invites: $fetchedInvites)
+                }
             }
             .padding(15)
         }
@@ -112,7 +117,8 @@ struct ReusableProfileContent: View {
             .getDocuments { querySnapshot, error in
                 guard let documents = querySnapshot?.documents, !documents.isEmpty else {
                     //none found where you are the sender and they are reciever, check other way around
-                    return determineStatusWhenNoDocFound(userUID: userUID, otherUserUID: otherUserUID)
+                    determineStatusWhenNoDocFound(userUID: userUID, otherUserUID: otherUserUID)
+                    return
                 }
                 
                 //there should only be one request between two users
@@ -127,10 +133,11 @@ struct ReusableProfileContent: View {
                     if friendRequest.status == .declined {
                         buttonMessage = "add friend"
                     }
-                   return friendRequestStatus = friendRequest.status
+                   friendRequestStatus = friendRequest.status
                 } else {
-                   return friendRequestStatus = nil
+                   friendRequestStatus = nil
                 }
+                return
             }
     }
     
@@ -146,7 +153,8 @@ struct ReusableProfileContent: View {
                 guard let documents = querySnapshot?.documents, !documents.isEmpty else {
                     //no request found, return .none or nil
                     buttonMessage = "add friend"  //EXAMPLE OF WHAT TO DO,
-                    return friendRequestStatus = nil
+                    friendRequestStatus = nil
+                    return
                 }
                 
                 // Assuming there is only one friend request between two users
@@ -161,10 +169,11 @@ struct ReusableProfileContent: View {
                     if friendRequest.status == .declined {
                         buttonMessage = "add friend"
                     }
-                   return friendRequestStatus = friendRequest.status
+                   friendRequestStatus = friendRequest.status
                 } else {
-                   return friendRequestStatus = nil
+                   friendRequestStatus = nil
                 }
+                return
             }
     }
     
