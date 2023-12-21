@@ -35,7 +35,7 @@ struct InviteCardView: View {
                 Text(invite.publishedDate.formatted(date: .numeric, time: .shortened))
                     .font(.caption2)
                     .foregroundColor(.gray)
-                Text("\(invite.userName) wants to \(invite.selectedActivity) with \(invite.selectedGroup)")
+                Text("\(invite.first) \(invite.last) wants to \(invite.selectedActivity) with \(invite.selectedGroup)")
                     .textSelection(.enabled)
                     .padding(.vertical, 8)
                 InviteInteraction()

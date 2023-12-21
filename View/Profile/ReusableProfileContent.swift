@@ -90,8 +90,9 @@ struct ReusableProfileContent: View {
                     .hAlign(.leading)
                     .padding(.vertical, 15)
                 
+                // if user is not us and we are not friends, dont show their profile content
                 if user.userUID != userUID && friendRequestStatus != .accepted{
-                    Text("Add " + user.username + " as a friend to see history")
+                    Text("Add " + user.username + " as a friend to see history!")
                 } else {
                     ReusableInviteView(basedOnUID: true, uid: user.userUID, invites: $fetchedInvites)
                 }
@@ -178,6 +179,9 @@ struct ReusableProfileContent: View {
     }
     
     //in this case, the sender id = otherUserID, recieverID = userUID
+    //each user has a list that keeps track of their friends
+    //when friend request is accepted, i want to:
+      //add
     func acceptFriendRequest(userUID: String, otherUserUID: String) {
         Task{
             guard let requestID = curRequest.id else{return}

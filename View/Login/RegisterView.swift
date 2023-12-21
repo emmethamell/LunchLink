@@ -22,6 +22,8 @@ struct RegisterView: View{
     @State var emailID: String = ""
     @State var password: String = ""
     @State var userName: String = ""
+    @State var firstName: String = ""
+    @State var lastName: String = ""
     @State var userProfilePicData: Data?
     // View properties
     @Environment(\.dismiss) var dismiss
@@ -35,6 +37,9 @@ struct RegisterView: View{
     @AppStorage("user_profile_url") var profileURL: URL?
     @AppStorage("user_name") var userNameStored: String = ""
     @AppStorage("user_UID") var userUID: String = ""
+    @AppStorage("first_name") var firstNameStored = ""
+    @AppStorage("last_name") var lastNameStored = ""
+    
     var body: some View{
         VStack(spacing: 10) {
             Text("Register Account")
@@ -115,6 +120,14 @@ struct RegisterView: View{
             }
             .padding(.top,25)
             
+            TextField("First Name", text: $firstName)
+                .textContentType(.emailAddress)
+                .border(1, .gray.opacity(0.5))
+            
+            TextField("Last Name", text: $lastName)
+                .textContentType(.emailAddress)
+                .border(1, .gray.opacity(0.5))
+            
             TextField("Username", text: $userName)
                 .textContentType(.emailAddress)
                 .border(1, .gray.opacity(0.5))
@@ -135,7 +148,7 @@ struct RegisterView: View{
                     .hAlign(.center)
                     .fillView(.black)
             }
-            .disableWithOpacity(userName == "" || emailID == "" || password == "" || userProfilePicData == nil)
+            .disableWithOpacity(userName == "" || emailID == "" || password == "" || firstName == "" || lastName == "" || userProfilePicData == nil)
             .padding(.top,10)
         }
     }
@@ -157,7 +170,7 @@ struct RegisterView: View{
                 // step 3: downloading photo url
                 let downloadURL = try await storageRef.downloadURL()
                 // step 4: creating a user firestore object
-                let user = User(username: userName, userUID: userUID, userEmail: emailID, userProfileURL: downloadURL)
+                let user = User(username: userName, userUID: userUID, userEmail: emailID, userProfileURL: downloadURL, first: firstName, last: lastName)
                 // step 5: saving user doc into firestore database
                 let _ = try Firestore.firestore().collection("Users").document(userUID).setData(from: user, completion: {
                     error in
@@ -165,6 +178,8 @@ struct RegisterView: View{
                         // print saved succesfully
                         print("Saved Succesfully")
                         userNameStored = userName
+                        firstNameStored = firstName
+                        lastNameStored = lastName
                         self.userUID = userUID
                         profileURL = downloadURL
                         logStatus = true

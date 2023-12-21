@@ -24,6 +24,9 @@ struct LoginView: View {
     @AppStorage("user_name") var userNameStored: String = ""
     @AppStorage("user_UID") var userUID: String = ""
     @AppStorage("log_status") var logStatus: Bool = false
+    @AppStorage("first_name") var firstNameStored = ""
+    @AppStorage("last_name") var lastNameStored = ""
+    
     var body: some View {
         VStack(spacing: 10) {
             Text("Sign in")
@@ -113,6 +116,8 @@ struct LoginView: View {
             userNameStored = user.username
             profileURL = user.userProfileURL
             logStatus = true
+            firstNameStored = user.first
+            lastNameStored = user.last
         })
     }
     

@@ -22,6 +22,8 @@ struct InviteView: View {
     @AppStorage("user_profile_url") private var profileURL: URL?
     @AppStorage("user_name") private var userName: String = ""
     @AppStorage("user_UID") private var userUID: String = ""
+    @AppStorage("first_name") var firstName = ""
+    @AppStorage("last_name") var lastName = ""
     
     @FocusState private var showKeyboard: Bool
     @State private var isLoading: Bool = false
@@ -106,7 +108,7 @@ struct InviteView: View {
                 //use to delete invite if needed
                 let imageReferenceID = "\(userUID)\(Date())"
                 
-                let invite = Invite(selectedActivity: selectedActivity, selectedGroup: selectedGroup, userName: userName, userUID: userUID, userProfileURL: profileURL)
+                let invite = Invite(selectedActivity: selectedActivity, selectedGroup: selectedGroup, userName: userName, userUID: userUID, userProfileURL: profileURL, first: firstName, last: lastName)
                 try await createDocumentAtFirebase(invite)
             }catch{
                 await setError(error)

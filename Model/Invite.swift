@@ -20,6 +20,8 @@ struct Invite: Identifiable, Codable, Equatable, Hashable {
     var userName: String
     var userUID: String
     var userProfileURL: URL
+    var first: String
+    var last: String
     
     enum CodingKeys: CodingKey{
         case id
@@ -31,6 +33,8 @@ struct Invite: Identifiable, Codable, Equatable, Hashable {
         case userName
         case userUID
         case userProfileURL
+        case first
+        case last
     }
 }
 
