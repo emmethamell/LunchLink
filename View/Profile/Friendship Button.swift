@@ -10,6 +10,7 @@ import SDWebImageSwiftUI
 import Firebase
 import FirebaseStorage
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 struct Friendship_Button: View {
     
@@ -23,6 +24,7 @@ struct Friendship_Button: View {
     var onAddFriend: () -> Void
     var onAcceptFriendRequest: () -> Void
     var onDeclineFriendRequest: () -> Void
+    
     @Binding var buttonMessage: String
     
     
@@ -35,7 +37,15 @@ struct Friendship_Button: View {
                 } else if buttonMessage == "friends!" {
                     print("already friends")
                 } else if buttonMessage == "add friend" {
-                    onAddFriend()
+                    // CALL THE CHECK FRIEND REQUEST HERE, IF THERE ALREADY EXISTS A REQUEST, THEN DO NOT CALL ON ADD FRIEND
+                    checkFriendRequest(curUserID: currentUserUID, otherUserID: user.id!) { exists in
+                        if exists {
+                            print("A friend request already exists.")
+                        } else {
+                            onAddFriend()
+                        }
+                    }
+                    
                 } else {
                     print("SOMETHING WENT WRONG")
                 }
@@ -64,6 +74,32 @@ struct Friendship_Button: View {
             }
             
         }
+    }
+    
+    func checkFriendRequest(curUserID: String, otherUserID: String, completion: @escaping (Bool) -> Void) {
+        let db = Firestore.firestore()
+        let friendRequestsRef = db.collection("FriendRequests")
+        
+        friendRequestsRef.whereField("receiverID", isEqualTo: curUserID)
+            .whereField("senderID", isEqualTo: otherUserID)
+            .getDocuments { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting documents: \(err)")
+                    completion(false)  // Call completion with false on error
+                } else {
+                    if let documents = querySnapshot?.documents, !documents.isEmpty {
+                        // Found documents matching the query
+                        for document in documents {
+                            print("\(document.documentID) => \(document.data())")
+                        }
+                        completion(true)  // Call completion with true if documents are found
+                    } else {
+                        completion(false)  // Call completion with false if no documents are found
+                    }
+                }
+            }
+        
+
     }
     
     struct CustomButtonStyle: ButtonStyle {

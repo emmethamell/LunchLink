@@ -27,11 +27,11 @@ struct MainView: View {
                     .tag(Tabs.tab2)
             }
             .onAppear {
-                            // correct the transparency bug for Tab bars
+                            //correct the transparency bug for Tab bars
                             let tabBarAppearance = UITabBarAppearance()
                             tabBarAppearance.configureWithOpaqueBackground()
                             UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
-                            // correct the transparency bug for Navigation bars
+                            //correct the transparency bug for Navigation bars
                             let navigationBarAppearance = UINavigationBarAppearance()
                             navigationBarAppearance.configureWithOpaqueBackground()
                             UINavigationBar.appearance().scrollEdgeAppearance = navigationBarAppearance

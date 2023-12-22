@@ -15,6 +15,8 @@
 		A14CF5B82B0C0F7F006E8BCD /* FriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14CF5B72B0C0F7F006E8BCD /* FriendRequest.swift */; };
 		A14F84CA2B03046200349A9B /* ActivitySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F84C92B03046200349A9B /* ActivitySelectionView.swift */; };
 		A14F84CC2B0307BD00349A9B /* GroupSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F84CB2B0307BD00349A9B /* GroupSelectionView.swift */; };
+		A15E8B832B350E4700456EAA /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = A15E8B822B350E4700456EAA /* FirebaseMessaging */; };
+		A15E8B872B3512EA00456EAA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A15E8B862B3512EA00456EAA /* GoogleService-Info.plist */; };
 		A1AC891A2B01D18200831625 /* InviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC89192B01D18100831625 /* InviteView.swift */; };
 		A1AC891D2B01D54400831625 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC891C2B01D54400831625 /* ProfileView.swift */; };
 		A1AC891F2B02D9F400831625 /* ReusableProfileContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC891E2B02D9F400831625 /* ReusableProfileContent.swift */; };
@@ -24,7 +26,6 @@
 		A1C985EF2AE617DE00314A7E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C985EE2AE617DE00314A7E /* ContentView.swift */; };
 		A1C985F12AE617E000314A7E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1C985F02AE617E000314A7E /* Assets.xcassets */; };
 		A1C985F42AE617E000314A7E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A1C985F32AE617E000314A7E /* Preview Assets.xcassets */; };
-		A1C985FB2AE61ACE00314A7E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1C985FA2AE61ACE00314A7E /* GoogleService-Info.plist */; };
 		A1C985FE2AE61B8400314A7E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A1C985FD2AE61B8400314A7E /* FirebaseAuth */; };
 		A1C986022AE61C1000314A7E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C986012AE61C1000314A7E /* LoginView.swift */; };
 		A1C986052AE635E000314A7E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A1C986042AE635E000314A7E /* FirebaseFirestore */; };
@@ -60,6 +61,8 @@
 		A14F84C92B03046200349A9B /* ActivitySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySelectionView.swift; sourceTree = "<group>"; };
 		A14F84CB2B0307BD00349A9B /* GroupSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSelectionView.swift; sourceTree = "<group>"; };
 		A14F84CD2B030C3800349A9B /* LunchLink-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "LunchLink-Info.plist"; sourceTree = "<group>"; };
+		A15E8B812B35039500456EAA /* LunchLink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LunchLink.entitlements; sourceTree = "<group>"; };
+		A15E8B862B3512EA00456EAA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A1AC89192B01D18100831625 /* InviteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteView.swift; sourceTree = "<group>"; };
 		A1AC891C2B01D54400831625 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A1AC891E2B02D9F400831625 /* ReusableProfileContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProfileContent.swift; sourceTree = "<group>"; };
@@ -69,7 +72,6 @@
 		A1C985EE2AE617DE00314A7E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A1C985F02AE617E000314A7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A1C985F32AE617E000314A7E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		A1C985FA2AE61ACE00314A7E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A1C986012AE61C1000314A7E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A1C9860A2AE6E3A200314A7E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A1C9860C2AE7032900314A7E /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 			files = (
 				A1AC89222B02DC1400831625 /* SDWebImageSwiftUI in Frameworks */,
 				A1C985FE2AE61B8400314A7E /* FirebaseAuth in Frameworks */,
+				A15E8B832B350E4700456EAA /* FirebaseMessaging in Frameworks */,
 				A1C986092AE635F500314A7E /* FirebaseStorage in Frameworks */,
 				A1C986052AE635E000314A7E /* FirebaseFirestore in Frameworks */,
 				A14CF5B22B0ADCBE006E8BCD /* SwiftMessages in Frameworks */,
@@ -153,13 +156,14 @@
 		A1C985EB2AE617DE00314A7E /* LunchLink */ = {
 			isa = PBXGroup;
 			children = (
+				A15E8B812B35039500456EAA /* LunchLink.entitlements */,
 				A14F84CD2B030C3800349A9B /* LunchLink-Info.plist */,
 				A1C986002AE61BDC00314A7E /* Model */,
 				A1C985FF2AE61BCE00314A7E /* View */,
 				A1C985EC2AE617DE00314A7E /* LunchLinkApp.swift */,
 				A1C985EE2AE617DE00314A7E /* ContentView.swift */,
+				A15E8B862B3512EA00456EAA /* GoogleService-Info.plist */,
 				A1C985F02AE617E000314A7E /* Assets.xcassets */,
-				A1C985FA2AE61ACE00314A7E /* GoogleService-Info.plist */,
 				A1C985F22AE617E000314A7E /* Preview Content */,
 			);
 			name = LunchLink;
@@ -263,6 +267,7 @@
 				A1C986082AE635F500314A7E /* FirebaseStorage */,
 				A1AC89212B02DC1400831625 /* SDWebImageSwiftUI */,
 				A14CF5B12B0ADCBE006E8BCD /* SwiftMessages */,
+				A15E8B822B350E4700456EAA /* FirebaseMessaging */,
 			);
 			productName = LunchLink;
 			productReference = A1C985E92AE617DE00314A7E /* LunchLink.app */;
@@ -311,8 +316,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A15E8B872B3512EA00456EAA /* GoogleService-Info.plist in Resources */,
 				A1C985F42AE617E000314A7E /* Preview Assets.xcassets in Resources */,
-				A1C985FB2AE61ACE00314A7E /* GoogleService-Info.plist in Resources */,
 				A1C985F12AE617E000314A7E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,6 +477,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LunchLink.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Preview Content\"";
@@ -506,6 +512,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LunchLink.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Preview Content\"";
@@ -589,6 +596,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A12086002B05C62500F6FFC4 /* XCRemoteSwiftPackageReference "SwiftMessages" */;
 			productName = SwiftMessages;
+		};
+		A15E8B822B350E4700456EAA /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1C985FC2AE61B8400314A7E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 		A1AC89212B02DC1400831625 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

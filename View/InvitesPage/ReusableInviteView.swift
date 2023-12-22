@@ -182,12 +182,6 @@ struct ReusableInviteView: View {
                         .order(by: "publishedDate", descending: true)
                         .limit(to: 20)
                 }
-                
-                //fetch the user
-                
-                
-                
-                //new query for UID based fetch
               
                     query = query
                         .whereField("userUID" , isEqualTo: uid)
@@ -210,11 +204,10 @@ struct ReusableInviteView: View {
             let db = Firestore.firestore()
             
             var ids = curUser?.friends ?? []
-            print(curUser!.userUID)
-            ids.append(curUser!.userUID) // Append the current user's ID
-            print("ids: " , ids)
+            if curUser != nil {
+                ids.append(curUser!.userUID)
+            }
             let chunkedArray = ids.chunked(into: 10)
-            print("chunkedArray: ",  chunkedArray)
             
             for idsChunk in chunkedArray {
                 do {
