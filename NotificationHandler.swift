@@ -8,8 +8,13 @@ import Firebase
 import UIKit
 import UserNotifications
 import FirebaseMessaging
+import SwiftUI
+
 
 class NotificationHandler: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+    
+    @AppStorage("user_token") var userToken: String = ""
+    
     static let shared = NotificationHandler()
     var deviceToken: String?
 
@@ -46,11 +51,12 @@ class NotificationHandler: NSObject, UIApplicationDelegate, UNUserNotificationCe
             } else if let token = token {
                 print("FCM registration token: \(token)")
                 self.deviceToken = token
+                self.userToken = token
+                
             }
         }
     }
     func handleRegistrationCompletion(uuid: String) {
-        print("calling the registration with token", deviceToken!)
         if let token = deviceToken {
             sendDeviceTokenToServer(token, uuid: uuid)
         }

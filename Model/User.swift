@@ -17,6 +17,7 @@ struct User: Identifiable, Codable {
     var friends: [String] = [] //to keep track of friends list
     var first: String
     var last: String
+    var token: String
     
     enum CodingKeys: CodingKey {
         case id
@@ -27,5 +28,6 @@ struct User: Identifiable, Codable {
         case friends
         case first
         case last
+        case token
     }
 }

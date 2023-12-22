@@ -39,6 +39,7 @@ struct RegisterView: View{
     @AppStorage("user_UID") var userUID: String = ""
     @AppStorage("first_name") var firstNameStored = ""
     @AppStorage("last_name") var lastNameStored = ""
+    @AppStorage("user_token") var userToken: String = ""
     
     var body: some View{
         VStack(spacing: 10) {
@@ -170,7 +171,7 @@ struct RegisterView: View{
                 // step 3: downloading photo url
                 let downloadURL = try await storageRef.downloadURL()
                 // step 4: creating a user firestore object
-                let user = User(username: userName, userUID: userUID, userEmail: emailID, userProfileURL: downloadURL, first: firstName, last: lastName)
+                let user = User(username: userName, userUID: userUID, userEmail: emailID, userProfileURL: downloadURL, first: firstName, last: lastName, token: userToken)
                 // step 5: saving user doc into firestore database
                 let _ = try Firestore.firestore().collection("Users").document(userUID).setData(from: user, completion: {
                     error in
