@@ -181,6 +181,9 @@ struct RegisterView: View{
                         firstNameStored = firstName
                         lastNameStored = lastName
                         self.userUID = userUID
+                        DispatchQueue.main.async {
+                            NotificationHandler.shared.handleRegistrationCompletion(uuid: userUID)
+                        }
                         profileURL = downloadURL
                         logStatus = true
                     }

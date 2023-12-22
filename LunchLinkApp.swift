@@ -11,6 +11,7 @@ import UserNotifications
 
 @main
 struct LunchLinkApp: App {
+    @UIApplicationDelegateAdaptor(NotificationHandler.self) var notificationHandler
     init() {
         FirebaseApp.configure()
     }

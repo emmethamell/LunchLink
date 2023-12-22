@@ -114,6 +114,7 @@ struct InviteView: View {
                 await setError(error)
             }
         }
+        NotificationHandler.shared.sendNotificationRequest(title: "Good boy!", body: "You made an invite!")
     }
     
     func createDocumentAtFirebase(_ invite: Invite)async throws{

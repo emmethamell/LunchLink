@@ -17,6 +17,7 @@
 		A14F84CC2B0307BD00349A9B /* GroupSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F84CB2B0307BD00349A9B /* GroupSelectionView.swift */; };
 		A15E8B832B350E4700456EAA /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = A15E8B822B350E4700456EAA /* FirebaseMessaging */; };
 		A15E8B872B3512EA00456EAA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A15E8B862B3512EA00456EAA /* GoogleService-Info.plist */; };
+		A16897752B3518ED00E18C4D /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16897742B3518ED00E18C4D /* NotificationHandler.swift */; };
 		A1AC891A2B01D18200831625 /* InviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC89192B01D18100831625 /* InviteView.swift */; };
 		A1AC891D2B01D54400831625 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC891C2B01D54400831625 /* ProfileView.swift */; };
 		A1AC891F2B02D9F400831625 /* ReusableProfileContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC891E2B02D9F400831625 /* ReusableProfileContent.swift */; };
@@ -63,6 +64,7 @@
 		A14F84CD2B030C3800349A9B /* LunchLink-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "LunchLink-Info.plist"; sourceTree = "<group>"; };
 		A15E8B812B35039500456EAA /* LunchLink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LunchLink.entitlements; sourceTree = "<group>"; };
 		A15E8B862B3512EA00456EAA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		A16897742B3518ED00E18C4D /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		A1AC89192B01D18100831625 /* InviteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteView.swift; sourceTree = "<group>"; };
 		A1AC891C2B01D54400831625 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A1AC891E2B02D9F400831625 /* ReusableProfileContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProfileContent.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				A1C985FF2AE61BCE00314A7E /* View */,
 				A1C985EC2AE617DE00314A7E /* LunchLinkApp.swift */,
 				A1C985EE2AE617DE00314A7E /* ContentView.swift */,
+				A16897742B3518ED00E18C4D /* NotificationHandler.swift */,
 				A15E8B862B3512EA00456EAA /* GoogleService-Info.plist */,
 				A1C985F02AE617E000314A7E /* Assets.xcassets */,
 				A1C985F22AE617E000314A7E /* Preview Content */,
@@ -345,6 +348,7 @@
 				A1C986022AE61C1000314A7E /* LoginView.swift in Sources */,
 				A1C985EF2AE617DE00314A7E /* ContentView.swift in Sources */,
 				A1AC891A2B01D18200831625 /* InviteView.swift in Sources */,
+				A16897752B3518ED00E18C4D /* NotificationHandler.swift in Sources */,
 				A1C986142AEF6DA900314A7E /* View+Extensions.swift in Sources */,
 				A1C986112AEF6CF000314A7E /* RegisterView.swift in Sources */,
 				A1C9860D2AE7032900314A7E /* LoadingView.swift in Sources */,
