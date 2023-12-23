@@ -25,6 +25,8 @@ struct InviteView: View {
     @AppStorage("first_name") var firstName = ""
     @AppStorage("last_name") var lastName = ""
     
+    @AppStorage("user_token") var userToken: String = ""
+    
     @FocusState private var showKeyboard: Bool
     @State private var isLoading: Bool = false
     @State private var showError: Bool = false
@@ -114,7 +116,7 @@ struct InviteView: View {
                 await setError(error)
             }
         }
-        NotificationHandler.shared.sendNotificationRequest(title: "Good boy!", body: "You made an invite!")
+        fetchTokensAndSendNotification(forUserUID: userUID)
     }
     
     func createDocumentAtFirebase(_ invite: Invite)async throws{
@@ -155,10 +157,47 @@ struct InviteView: View {
         SwiftMessages.show(config: config, view: view)
     }
     
+    func fetchTokensAndSendNotification(forUserUID userUID: String) {
+        let db = Firestore.firestore()
+        // Query the "Users" collection to get the user's document
+        db.collection("Users").document(userUID).getDocument { (document, error) in
+            if let document = document, document.exists {
+                // Assuming friends' UIDs are stored in an array field "friendsUIDs"
+                guard let friendsUIDs = document.data()?["friends"] as? [String] else { return }
+                print("now here")
+                // Fetch each friend's token and accumulate them
+                var tokens: [String] = []
+                let group = DispatchGroup()
+
+                for friendUID in friendsUIDs {
+                    group.enter()
+                    db.collection("Users").document(friendUID).getDocument { (friendDocument, error) in
+                        if let friendDocument = friendDocument, friendDocument.exists {
+                            if let token = friendDocument.data()?["token"] as? String {
+                                tokens.append(token)
+                            }
+                        }
+                        group.leave()
+                    }
+                }
+                //send after fetching all notifications
+                group.notify(queue: .main) {
+                    NotificationHandler.shared.sendNotificationRequest(
+                        header: firstName + " " + lastName + " wants to " + selectedActivity + "!",
+                        body: "",
+                        fcmTokens: tokens)
+                }
+
+            } else {
+                print("Document does not exist or error: \(error?.localizedDescription ?? "")")
+            }
+        }
+    }
+    
     
 }
 
-
+/*
 struct InviteView_Previews: PreviewProvider {
     static var previews: some View {
         InviteView{_ in
@@ -166,3 +205,4 @@ struct InviteView_Previews: PreviewProvider {
         }
     }
 }
+*/

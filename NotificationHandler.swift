@@ -16,7 +16,7 @@ class NotificationHandler: NSObject, UIApplicationDelegate, UNUserNotificationCe
     @AppStorage("user_token") var userToken: String = ""
     
     static let shared = NotificationHandler()
-    var deviceToken: String?
+    
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
@@ -50,57 +50,31 @@ class NotificationHandler: NSObject, UIApplicationDelegate, UNUserNotificationCe
                 print("Error fetching FCM registration token: \(error)")
             } else if let token = token {
                 print("FCM registration token: \(token)")
-                self.deviceToken = token
                 self.userToken = token
                 
             }
-        }
-    }
-    func handleRegistrationCompletion(uuid: String) {
-        if let token = deviceToken {
-            sendDeviceTokenToServer(token, uuid: uuid)
         }
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Failed to register for remote notifications: \(error.localizedDescription)")
     }
-
-    private func sendDeviceTokenToServer(_ token: String, uuid: String) {
-        guard let url = URL(string: "http://10.0.0.220:8000/register-token") else { return }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        let body: [String: Any] = ["token": token, "uuid": uuid]
-        request.httpBody = try? JSONSerialization.data(withJSONObject: body)
-
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                print("Error sending FCM token and UUID to server: \(error)")
-                return
-            }
-            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode != 200 {
-                print("Server returned an error: \(httpResponse.statusCode)")
-            } else {
-                print("FCM token and UUID sent successfully")
-            }
-        }
-
-        task.resume()
-    }
     
-    func sendNotificationRequest(title: String, body: String) {
-        guard let url = URL(string: "http://10.0.0.220:8000/send-notification") else { return }
+    func sendNotificationRequest(header: String, body: String, fcmTokens: [String]) {
+        guard let url = URL(string: "https://lunchlink-render.onrender.com/send") else { return }
+        
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
         let json: [String: Any] = [
-            "title": title,
+            "fcmTokens": fcmTokens,
+            "header": header,
             "body": body
         ]
-        request.httpBody = try? JSONSerialization.data(withJSONObject: json)
+        print(json)
+        
+        request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: [])
         
         print("REQUEST", request)
 
@@ -119,7 +93,5 @@ class NotificationHandler: NSObject, UIApplicationDelegate, UNUserNotificationCe
         task.resume()
     }
     
-    
-
     // Implement other UNUserNotificationCenterDelegate methods as needed...
 }

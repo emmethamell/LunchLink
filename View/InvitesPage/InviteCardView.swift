@@ -21,6 +21,9 @@ struct InviteCardView: View {
     
     @State private var docListner: ListenerRegistration?
     
+    @State private var showingLikedUsers = false
+    @State private var showingDislikedUsers = false
+    
     var body: some View {
         HStack(alignment: .top, spacing: 12){
             WebImage(url: invite.userProfileURL)
@@ -85,42 +88,66 @@ struct InviteCardView: View {
     }
     //MARK: Accept or deny
     @ViewBuilder
-    func InviteInteraction()->some View{
-        HStack(spacing: 6){
-            Button(action: acceptInvite){
-                if invite.likedIDs.contains(userUID){
-                    Text("accept")
+    func InviteInteraction() -> some View {
+        HStack(spacing: 6) {
+            Button(action: acceptInvite) {
+                if invite.likedIDs.contains(userUID) {
+                    Text("Yes!")
                         .foregroundColor(.white)
-                        .padding(10)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
                         .background(Color.green)
                         .cornerRadius(8)
                 } else {
-                    Text("accept")
+                    Text("Yes!")
                 }
             }
-            Text("\(invite.likedIDs.count)")
-                .font(.caption)
-                .foregroundColor(.gray)
+            
+            // Button for showing liked users
+            Button(action: { showingLikedUsers = true }) {
+                Text("\(invite.likedIDs.count)")
+                    .font(.headline)
+                    .padding(4)
+                    .underline()
+                    .foregroundColor(.red)
+            }
+            .foregroundColor(.gray)
+            .sheet(isPresented: $showingLikedUsers) {
+                LikedUsersView(userUIDs: invite.likedIDs)
+            }
+
             Button(action: denyInvite) {
-                if invite.dislikedIDs.contains(userUID){
-                    Text("decline")
+                if invite.dislikedIDs.contains(userUID) {
+                    Text("Can't")
                         .foregroundColor(.white)
-                        .padding(10)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
                         .background(Color.red)
                         .cornerRadius(8)
                 } else {
-                    Text("decline")
+                    Text("Can't")
                 }
             }
             .padding(.leading, 25)
-            Text("\(invite.dislikedIDs.count)")
-                .font(.caption)
-                .foregroundColor(.gray)
+
+            // Button for showing disliked users
+            Button(action: { showingDislikedUsers = true }) {
+                Text("\(invite.dislikedIDs.count)")
+                    .font(.headline)
+                    .padding(4)
+                    .underline()
+                    .foregroundColor(.red)
+            }
+            .foregroundColor(.gray)
+            .sheet(isPresented: $showingDislikedUsers) {
+                DislikedUsersView(userUIDs: invite.dislikedIDs)
+            }
         }
         .foregroundColor(.black)
         .padding(.vertical, 8)
-    }
-    //accepting invite
+    }    //accepting invite
+    
+    
     func acceptInvite(){
         Task{
             guard let inviteID = invite.id else{return}
