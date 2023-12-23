@@ -39,6 +39,7 @@
 		A1C986162AEF6E5100314A7E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C986152AEF6E5100314A7E /* MainView.swift */; };
 		A1D4B3972B36744700407DF0 /* LikedUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4B3962B36744700407DF0 /* LikedUsersView.swift */; };
 		A1D4B3992B36746A00407DF0 /* DislikedUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4B3982B36746A00407DF0 /* DislikedUsersView.swift */; };
+		A1D4B39B2B37965F00407DF0 /* LikedUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4B39A2B37965F00407DF0 /* LikedUsersViewModel.swift */; };
 		A1EB9D482B0C326C00A26252 /* Friendship Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EB9D472B0C326C00A26252 /* Friendship Button.swift */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,7 @@
 		A1C986152AEF6E5100314A7E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A1D4B3962B36744700407DF0 /* LikedUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUsersView.swift; sourceTree = "<group>"; };
 		A1D4B3982B36746A00407DF0 /* DislikedUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DislikedUsersView.swift; sourceTree = "<group>"; };
+		A1D4B39A2B37965F00407DF0 /* LikedUsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUsersViewModel.swift; sourceTree = "<group>"; };
 		A1EB9D472B0C326C00A26252 /* Friendship Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friendship Button.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +115,7 @@
 				A12085FE2B054AE000F6FFC4 /* FriendsView.swift */,
 				A1D4B3962B36744700407DF0 /* LikedUsersView.swift */,
 				A1D4B3982B36746A00407DF0 /* DislikedUsersView.swift */,
+				A1D4B39A2B37965F00407DF0 /* LikedUsersViewModel.swift */,
 			);
 			path = InvitesPage;
 			sourceTree = "<group>";
@@ -349,6 +352,7 @@
 				A12086092B0691F800F6FFC4 /* InviteCardView.swift in Sources */,
 				A1AC891F2B02D9F400831625 /* ReusableProfileContent.swift in Sources */,
 				A1D4B3992B36746A00407DF0 /* DislikedUsersView.swift in Sources */,
+				A1D4B39B2B37965F00407DF0 /* LikedUsersViewModel.swift in Sources */,
 				A1EB9D482B0C326C00A26252 /* Friendship Button.swift in Sources */,
 				A1AC89262B02E58500831625 /* Invite.swift in Sources */,
 				A14F84CC2B0307BD00349A9B /* GroupSelectionView.swift in Sources */,

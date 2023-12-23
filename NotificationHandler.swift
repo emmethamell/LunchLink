@@ -92,6 +92,4 @@ class NotificationHandler: NSObject, UIApplicationDelegate, UNUserNotificationCe
 
         task.resume()
     }
-    
-    // Implement other UNUserNotificationCenterDelegate methods as needed...
 }
