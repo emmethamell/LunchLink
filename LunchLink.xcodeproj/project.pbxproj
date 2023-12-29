@@ -146,6 +146,7 @@
 		A1C985E02AE617DE00314A7E = {
 			isa = PBXGroup;
 			children = (
+				A1D4B39C2B3F826A00407DF0 /* .gitignore */,
 				A1C985EB2AE617DE00314A7E /* LunchLink */,
 				A1C985EA2AE617DE00314A7E /* Products */,
 				A1C986032AE635E000314A7E /* Frameworks */,
@@ -173,7 +174,6 @@
 				A15E8B862B3512EA00456EAA /* GoogleService-Info.plist */,
 				A1C985F02AE617E000314A7E /* Assets.xcassets */,
 				A1C985F22AE617E000314A7E /* Preview Content */,
-				A1D4B39C2B3F826A00407DF0 /* .gitignore */,
 			);
 			name = LunchLink;
 			sourceTree = "<group>";
