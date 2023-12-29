@@ -8,4 +8,4 @@ build/
 !default.perspectivev3
 .xccheckout
 xcuserdata/
-.GoogleService-Info.plist
+./GoogleService-Info.plist
