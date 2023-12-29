@@ -11,15 +11,15 @@ import FirebaseFirestore
 import FirebaseStorage
 
 struct LoginView: View {
-    // User details
+
     @State var emailID: String = ""
     @State var password: String = ""
-    // View Properties
+
     @State var createAccount: Bool = false
     @State var showError: Bool = false
     @State var errorMessage: String = ""
     @State var isLoading: Bool = false
-    // User Defaults
+
     @AppStorage("user_profile_url") var profileURL: URL?
     @AppStorage("user_name") var userNameStored: String = ""
     @AppStorage("user_UID") var userUID: String = ""
@@ -105,13 +105,11 @@ struct LoginView: View {
         }
     }
     
-    // if user is found then fetch the user data from firestore
     func fetchUser()async throws{
         guard let userID = Auth.auth().currentUser?.uid else {return}
         let user = try await Firestore.firestore().collection("Users").document(userID).getDocument(as: User.self)
-        // UI updating must be run on main thread
+
         await MainActor.run(body: {
-            // Setting UserDefaults data and changing apps auth status
             userUID = userID
             userNameStored = user.username
             profileURL = user.userProfileURL
@@ -124,7 +122,6 @@ struct LoginView: View {
     func resetPassword() {
         Task {
             do {
-                //with the help of the swift concurency auth it can be done in one line
                 try await Auth.auth().sendPasswordReset(withEmail: emailID)
                 print("Link Sent")
             }catch{
@@ -132,9 +129,8 @@ struct LoginView: View {
             }
         }
     }
-    //display errors via alert
+    
     func setError(_ error: Error)async{
-        // UI must be updated on main thread
         await MainActor.run(body: {
             errorMessage = error.localizedDescription
             showError.toggle()

@@ -20,9 +20,7 @@ class NotificationHandler: NSObject, UIApplicationDelegate, UNUserNotificationCe
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
-        // Request notification permissions
         requestNotificationPermission()
-        // Register for push notifications
         application.registerForRemoteNotifications()
         return true
     }
@@ -41,10 +39,10 @@ class NotificationHandler: NSObject, UIApplicationDelegate, UNUserNotificationCe
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        // Set the APNs token for Firebase Messaging
+        //set the APNs token for Firebase Messaging
         Messaging.messaging().apnsToken = deviceToken
 
-        // Now fetch the FCM token
+        // now fetch the FCM token
         Messaging.messaging().token { token, error in
             if let error = error {
                 print("Error fetching FCM registration token: \(error)")

@@ -37,9 +37,6 @@ struct LikedUsersView: View {
                             }
                         }
                         
-                        
-                        
-                        // Display username
                         Text(user.username)
                             .font(.body)
                             .padding(.leading, 10)

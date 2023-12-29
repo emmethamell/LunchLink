@@ -22,7 +22,6 @@ struct InviteCardView: View {
     @State private var docListner: ListenerRegistration?
     
     @State private var showingLikedUsers = false
-    @State private var showingDislikedUsers = false
     
     var body: some View {
         HStack(alignment: .top, spacing: 12){
@@ -38,7 +37,7 @@ struct InviteCardView: View {
                 Text(invite.publishedDate.formatted(date: .numeric, time: .shortened))
                     .font(.caption2)
                     .foregroundColor(.gray)
-                Text("\(invite.first) \(invite.last) wants to \(invite.selectedActivity) with \(invite.selectedGroup)")
+                Text("\(invite.first) \(invite.last) wants to \(invite.selectedActivity)")
                     .textSelection(.enabled)
                     .padding(.vertical, 8)
                 InviteInteraction()
@@ -86,106 +85,61 @@ struct InviteCardView: View {
             }
         }
     }
-    //MARK: Accept or deny
     @ViewBuilder
     func InviteInteraction() -> some View {
         HStack(spacing: 6) {
             Button(action: acceptInvite) {
                 if invite.likedIDs.contains(userUID) {
-                    Text("Yes!")
+                    Text("I'm in!")
                         .foregroundColor(.white)
                         .padding(.horizontal, 10)
                         .padding(.vertical, 5)
                         .background(Color.green)
                         .cornerRadius(8)
                 } else {
-                    Text("Yes!")
+                    Text("I'm in!")
                 }
             }
             
-            // Button for showing liked users
+            
             Button(action: { showingLikedUsers = true }) {
-                Text("\(invite.likedIDs.count)")
-                    .font(.headline)
-                    .padding(4)
-                    .underline()
-                    .foregroundColor(.red)
+                HStack(spacing: 2) {
+
+                    Text("\(invite.likedIDs.count)")
+                        .font(.headline)
+                        .foregroundColor(.black)
+                }
+                .padding(6)
+                
             }
-            .foregroundColor(.gray)
+            .buttonStyle(PlainButtonStyle())
             .sheet(isPresented: $showingLikedUsers) {
                 LikedUsersView(userUIDs: invite.likedIDs)
             }
 
-            Button(action: denyInvite) {
-                if invite.dislikedIDs.contains(userUID) {
-                    Text("Can't")
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 5)
-                        .background(Color.red)
-                        .cornerRadius(8)
-                } else {
-                    Text("Can't")
-                }
-            }
-            .padding(.leading, 25)
 
-            // Button for showing disliked users
-            Button(action: { showingDislikedUsers = true }) {
-                Text("\(invite.dislikedIDs.count)")
-                    .font(.headline)
-                    .padding(4)
-                    .underline()
-                    .foregroundColor(.red)
-            }
-            .foregroundColor(.gray)
-            .sheet(isPresented: $showingDislikedUsers) {
-                DislikedUsersView(userUIDs: invite.dislikedIDs)
-            }
         }
         .foregroundColor(.black)
         .padding(.vertical, 8)
-    }    //accepting invite
+    }    
     
     
     func acceptInvite(){
         Task{
             guard let inviteID = invite.id else{return}
             if invite.likedIDs.contains(userUID){
-                //remove the user id from the array
                 try await Firestore.firestore().collection("Invites").document(inviteID).updateData([
                     "likedIDs": FieldValue.arrayRemove([userUID])
                 ])
             }else{
-                //add user id to liked array and remove from disliked if there
                 try await Firestore.firestore().collection("Invites").document(inviteID).updateData([
-                    "likedIDs": FieldValue.arrayUnion([userUID]),
-                    "dislikedIDs": FieldValue.arrayRemove([userUID])
+                    "likedIDs": FieldValue.arrayUnion([userUID])
                 ])
                 
             }
         }
     }
-    //deny invite
-    func denyInvite(){
-        Task{
-            guard let inviteID = invite.id else{return}
-            if invite.dislikedIDs.contains(userUID){
-                //remove the user id from the array
-                try await Firestore.firestore().collection("Invites").document(inviteID).updateData([
-                    "dislikedIDs": FieldValue.arrayRemove([userUID])
-                ])
-            }else{
-                //add user id to liked array and remove from disliked if there
-                try await Firestore.firestore().collection("Invites").document(inviteID).updateData([
-                    "likedIDs": FieldValue.arrayRemove([userUID]),
-                    "dislikedIDs": FieldValue.arrayUnion([userUID])
-                ])
-                
-            }
-        }
-    }
-    //delete invite
+
     func deleteInvite(){
         Task{
             do{

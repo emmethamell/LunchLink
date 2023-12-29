@@ -55,8 +55,6 @@ struct SearchUserView: View {
                 }
             }
             .task {
-                //this modifier is like onappear
-                //so fetching for the first time only
                 if myProfile != nil{return} //task will be called any time we open tab, so we need to limit it to the first time (initial fetch)
                 //initial fetch
                 await fetchUserData()

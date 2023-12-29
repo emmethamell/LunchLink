@@ -19,7 +19,6 @@ struct ReusableProfileContent: View {
     var user: User      //user object for the other user
     var userUID: String //userUID for the current user
 
-    //the userUID for current user
     // @AppStorage("user_UID") private var userUID: String = ""
     @State private var friendRequestStatus: FriendRequest.RequestStatus?
     @State private var buttonMessage: String = ""
@@ -68,17 +67,10 @@ struct ReusableProfileContent: View {
                                 createFriendRequest(userUID: userUID, otherUserUID: user.userUID)
                         },
                         onAcceptFriendRequest: {
-                            // Logic to accept friend request
                             print("accept friend request")
                             acceptFriendRequest(userUID: userUID, otherUserUID: user.userUID)
-                            //add the curUserID to Other user friend list (done)
-                            //add the otherUserID to curUser friend list (done)
                         },
                         onDeclineFriendRequest: {
-                            //find and delete the document in the FriendRequests collection where:
-                            //recieverID = userUID
-                            //and
-                            //senderID = user.id
                             deleteFriendRequest(receiverID: userUID, senderID: user.id!)
                             print("deny friend request")
                         },
@@ -94,7 +86,6 @@ struct ReusableProfileContent: View {
                     .hAlign(.leading)
                     .padding(.vertical, 15)
                 
-                //if user is not us and we are not friends, dont show their profile content
                 if user.userUID != userUID && friendRequestStatus != .accepted{
                     Text("Add " + user.username + " as a friend to see history!")
                 } else {
@@ -115,13 +106,11 @@ struct ReusableProfileContent: View {
     //check the status, return pending, accepted, or declined
     func determineFriendRequestStatus(userUID: String, otherUserUID: String) {
         let db = Firestore.firestore()
-        //query the FriendRequest collection
         db.collection("FriendRequests")
             .whereField("senderID", isEqualTo: userUID)
             .whereField("receiverID", isEqualTo: otherUserUID)
             .getDocuments { querySnapshot, error in
                 guard let documents = querySnapshot?.documents, !documents.isEmpty else {
-                    //none found where you are the sender and they are reciever, check other way around
                     determineStatusWhenNoDocFound(userUID: userUID, otherUserUID: otherUserUID)
                     return
                 }
@@ -150,8 +139,6 @@ struct ReusableProfileContent: View {
     //try to see if the other user has requested you
     func determineStatusWhenNoDocFound(userUID: String, otherUserUID: String) {
         let db = Firestore.firestore()
-        
-        //query the FriendRequest collection
         db.collection("FriendRequests")
             .whereField("receiverID", isEqualTo: userUID)
             .whereField("senderID", isEqualTo: otherUserUID)
@@ -183,10 +170,6 @@ struct ReusableProfileContent: View {
             }
     }
     
-    //in this case, the sender id = otherUserID, recieverID = userUID
-    //each user has a list that keeps track of their friends
-    //when friend request is accepted, i want to:
-      //add
     func acceptFriendRequest(userUID: String, otherUserUID: String) {
         Task{
             guard let requestID = curRequest.id else{return}
@@ -199,8 +182,6 @@ struct ReusableProfileContent: View {
     }
     
     
-    //create a friend request from user to otherUser
-    //create a FriendRequest document: senderID = userUID, recieverID = otherUserUID, status = pending
     func createFriendRequest(userUID: String, otherUserUID: String) {
        // isLoading = true
             Task{
@@ -250,7 +231,6 @@ struct ReusableProfileContent: View {
         let db = Firestore.firestore()
         let friendRequestsRef = db.collection("FriendRequests")
 
-        // Find the document where receiverID = receiverID and senderID = senderID
         friendRequestsRef.whereField("receiverID", isEqualTo: receiverID)
                          .whereField("senderID", isEqualTo: senderID)
                          .getDocuments { (querySnapshot, err) in
@@ -259,7 +239,6 @@ struct ReusableProfileContent: View {
                                  return
                              }
 
-                             // Assuming there's only one matching document. Adjust as needed.
                              if let document = querySnapshot?.documents.first {
                                  document.reference.delete() { err in
                                      if let err = err {

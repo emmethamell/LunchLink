@@ -14,7 +14,6 @@
 		A14CF5B22B0ADCBE006E8BCD /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = A14CF5B12B0ADCBE006E8BCD /* SwiftMessages */; };
 		A14CF5B82B0C0F7F006E8BCD /* FriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14CF5B72B0C0F7F006E8BCD /* FriendRequest.swift */; };
 		A14F84CA2B03046200349A9B /* ActivitySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F84C92B03046200349A9B /* ActivitySelectionView.swift */; };
-		A14F84CC2B0307BD00349A9B /* GroupSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F84CB2B0307BD00349A9B /* GroupSelectionView.swift */; };
 		A15E8B832B350E4700456EAA /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = A15E8B822B350E4700456EAA /* FirebaseMessaging */; };
 		A15E8B872B3512EA00456EAA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A15E8B862B3512EA00456EAA /* GoogleService-Info.plist */; };
 		A16897752B3518ED00E18C4D /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16897742B3518ED00E18C4D /* NotificationHandler.swift */; };
@@ -38,8 +37,8 @@
 		A1C986142AEF6DA900314A7E /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C986132AEF6DA900314A7E /* View+Extensions.swift */; };
 		A1C986162AEF6E5100314A7E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C986152AEF6E5100314A7E /* MainView.swift */; };
 		A1D4B3972B36744700407DF0 /* LikedUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4B3962B36744700407DF0 /* LikedUsersView.swift */; };
-		A1D4B3992B36746A00407DF0 /* DislikedUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4B3982B36746A00407DF0 /* DislikedUsersView.swift */; };
 		A1D4B39B2B37965F00407DF0 /* LikedUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4B39A2B37965F00407DF0 /* LikedUsersViewModel.swift */; };
+		A1D4B39D2B3F826A00407DF0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A1D4B39C2B3F826A00407DF0 /* .gitignore */; };
 		A1EB9D482B0C326C00A26252 /* Friendship Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EB9D472B0C326C00A26252 /* Friendship Button.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,7 +62,6 @@
 		A13ACE842B08428200AF5B2F /* SearchUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserView.swift; sourceTree = "<group>"; };
 		A14CF5B72B0C0F7F006E8BCD /* FriendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequest.swift; sourceTree = "<group>"; };
 		A14F84C92B03046200349A9B /* ActivitySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySelectionView.swift; sourceTree = "<group>"; };
-		A14F84CB2B0307BD00349A9B /* GroupSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupSelectionView.swift; sourceTree = "<group>"; };
 		A14F84CD2B030C3800349A9B /* LunchLink-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "LunchLink-Info.plist"; sourceTree = "<group>"; };
 		A15E8B812B35039500456EAA /* LunchLink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LunchLink.entitlements; sourceTree = "<group>"; };
 		A15E8B862B3512EA00456EAA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -84,8 +82,8 @@
 		A1C986132AEF6DA900314A7E /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
 		A1C986152AEF6E5100314A7E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A1D4B3962B36744700407DF0 /* LikedUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUsersView.swift; sourceTree = "<group>"; };
-		A1D4B3982B36746A00407DF0 /* DislikedUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DislikedUsersView.swift; sourceTree = "<group>"; };
 		A1D4B39A2B37965F00407DF0 /* LikedUsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUsersViewModel.swift; sourceTree = "<group>"; };
+		A1D4B39C2B3F826A00407DF0 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		A1EB9D472B0C326C00A26252 /* Friendship Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friendship Button.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,7 +112,6 @@
 				A12086052B05C93A00F6FFC4 /* ReusableInviteView.swift */,
 				A12085FE2B054AE000F6FFC4 /* FriendsView.swift */,
 				A1D4B3962B36744700407DF0 /* LikedUsersView.swift */,
-				A1D4B3982B36746A00407DF0 /* DislikedUsersView.swift */,
 				A1D4B39A2B37965F00407DF0 /* LikedUsersViewModel.swift */,
 			);
 			path = InvitesPage;
@@ -132,7 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				A14F84C92B03046200349A9B /* ActivitySelectionView.swift */,
-				A14F84CB2B0307BD00349A9B /* GroupSelectionView.swift */,
 			);
 			path = Selections;
 			sourceTree = "<group>";
@@ -177,6 +173,7 @@
 				A15E8B862B3512EA00456EAA /* GoogleService-Info.plist */,
 				A1C985F02AE617E000314A7E /* Assets.xcassets */,
 				A1C985F22AE617E000314A7E /* Preview Content */,
+				A1D4B39C2B3F826A00407DF0 /* .gitignore */,
 			);
 			name = LunchLink;
 			sourceTree = "<group>";
@@ -293,7 +290,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1430;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1510;
 				TargetAttributes = {
 					A1C985E82AE617DE00314A7E = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -328,6 +325,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1D4B39D2B3F826A00407DF0 /* .gitignore in Resources */,
 				A15E8B872B3512EA00456EAA /* GoogleService-Info.plist in Resources */,
 				A1C985F42AE617E000314A7E /* Preview Assets.xcassets in Resources */,
 				A1C985F12AE617E000314A7E /* Assets.xcassets in Resources */,
@@ -351,11 +349,9 @@
 				A1AC891D2B01D54400831625 /* ProfileView.swift in Sources */,
 				A12086092B0691F800F6FFC4 /* InviteCardView.swift in Sources */,
 				A1AC891F2B02D9F400831625 /* ReusableProfileContent.swift in Sources */,
-				A1D4B3992B36746A00407DF0 /* DislikedUsersView.swift in Sources */,
 				A1D4B39B2B37965F00407DF0 /* LikedUsersViewModel.swift in Sources */,
 				A1EB9D482B0C326C00A26252 /* Friendship Button.swift in Sources */,
 				A1AC89262B02E58500831625 /* Invite.swift in Sources */,
-				A14F84CC2B0307BD00349A9B /* GroupSelectionView.swift in Sources */,
 				A1D4B3972B36744700407DF0 /* LikedUsersView.swift in Sources */,
 				A1C986022AE61C1000314A7E /* LoginView.swift in Sources */,
 				A1C985EF2AE617DE00314A7E /* ContentView.swift in Sources */,
@@ -375,6 +371,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -436,6 +433,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

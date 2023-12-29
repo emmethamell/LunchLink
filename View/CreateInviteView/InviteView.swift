@@ -17,7 +17,6 @@ struct InviteView: View {
     @State private var recentInvites: [Invite] = []
     
     @State private var selectedActivity: String = "Choose"
-    @State private var selectedGroup: String = "Choose"
         
     @AppStorage("user_profile_url") private var profileURL: URL?
     @AppStorage("user_name") private var userName: String = ""
@@ -45,7 +44,6 @@ struct InviteView: View {
             .padding(20)
             .hAlign(.trailing)
             
-            //Contents in this stack
             VStack {
                     VStack(alignment: .center, spacing: 20) {
                         
@@ -61,19 +59,6 @@ struct InviteView: View {
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                         }
-
-                            Text("With who?")
-                            .font(.title)
-
-                        NavigationLink(destination: GroupSelectionView(selectedGroup: $selectedGroup).toolbar(.hidden)) {
-                                Text(selectedGroup)
-                                    .font(.title)
-                                    .padding()
-                                    .frame(maxWidth: .infinity)
-                                    .background(Color.black)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                            }
                         
                        
                     }
@@ -87,7 +72,7 @@ struct InviteView: View {
                         .padding(.vertical, 6)
                         .background(.black,in: Capsule())
                 }
-                .disableWithOpacity(selectedActivity == "Choose" || selectedGroup == "Choose")
+                .disableWithOpacity(selectedActivity == "Choose")
                 
             }
             // end of stack
@@ -110,7 +95,7 @@ struct InviteView: View {
                 //use to delete invite if needed
                 let imageReferenceID = "\(userUID)\(Date())"
                 
-                let invite = Invite(selectedActivity: selectedActivity, selectedGroup: selectedGroup, userName: userName, userUID: userUID, userProfileURL: profileURL, first: firstName, last: lastName)
+                let invite = Invite(selectedActivity: selectedActivity, userName: userName, userUID: userUID, userProfileURL: profileURL, first: firstName, last: lastName)
                 try await createDocumentAtFirebase(invite)
             }catch{
                 await setError(error)
@@ -128,7 +113,6 @@ struct InviteView: View {
                 onInvite(invite)
                 //TODO: Here, once posted, clear the values and navigate to different page or something
                 selectedActivity = "Choose"
-                selectedGroup = "Choose"
                 
             }
         })
@@ -148,24 +132,20 @@ struct InviteView: View {
         view.configureContent(title: "Success", body: "Invite Sent!")
         view.button?.isHidden = true
         
-        // Config setup
         var config = SwiftMessages.Config()
         config.presentationStyle = .top
         config.presentationContext = .window(windowLevel: .normal)
         
-        // Show the message
         SwiftMessages.show(config: config, view: view)
     }
     
     func fetchTokensAndSendNotification(forUserUID userUID: String) {
         let db = Firestore.firestore()
-        // Query the "Users" collection to get the user's document
         db.collection("Users").document(userUID).getDocument { (document, error) in
             if let document = document, document.exists {
-                // Assuming friends' UIDs are stored in an array field "friendsUIDs"
+                //assuming friends' UIDs are stored in an array field "friendsUIDs"
                 guard let friendsUIDs = document.data()?["friends"] as? [String] else { return }
                 print("now here")
-                // Fetch each friend's token and accumulate them
                 var tokens: [String] = []
                 let group = DispatchGroup()
 
