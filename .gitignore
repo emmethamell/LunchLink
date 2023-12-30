@@ -7,4 +7,4 @@ build/
 !default.mode2v3
 !default.perspectivev3
 .xccheckout
-./LunchLink/GoogleService-Info.plist
+./GoogleService-Info.plist
