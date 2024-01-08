@@ -13,9 +13,12 @@ import FirebaseFirestore
 
 struct InviteCardView: View {
     var invite: Invite
-    
+    var user: User
     var onUpdate: (Invite)->()
     var onDelete: ()->()
+    
+    
+    
     
     @AppStorage("user_UID") private var userUID: String = ""
     
@@ -23,13 +26,21 @@ struct InviteCardView: View {
     
     @State private var showingLikedUsers = false
     
+    @State private var showProfile = false
+    
+
+    
     var body: some View {
         HStack(alignment: .top, spacing: 12){
-            WebImage(url: invite.userProfileURL)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 35, height: 35)
-                .clipShape(Circle())
+            Button(action: {
+                self.showProfile = true
+            }) {
+                WebImage(url: invite.userProfileURL)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 45, height: 45)
+                    .clipShape(Circle())
+            }
             VStack(alignment: .leading, spacing: 6){
                 Text(invite.userName)
                     .font(.callout)
@@ -43,6 +54,12 @@ struct InviteCardView: View {
                 InviteInteraction()
             }
         }
+        .sheet(isPresented: $showProfile) {
+            // only present this sheet if otherProfile is not nil
+                ReusableProfileContent(user: user, userUID: userUID)
+           
+        }
+
         .hAlign(.leading)
         .overlay(alignment: .topTrailing, content: {
             if invite.userUID == userUID{
@@ -60,7 +77,7 @@ struct InviteCardView: View {
             }
         })
 
-        .onAppear{
+        .task{
             //add only once
             if docListner == nil{
                 guard let inviteID = invite.id else {return}
@@ -78,6 +95,7 @@ struct InviteCardView: View {
                 })
             }
         }
+
         .onDisappear{
             if let docListner{
                 docListner.remove()
@@ -85,6 +103,8 @@ struct InviteCardView: View {
             }
         }
     }
+    
+    
     @ViewBuilder
     func InviteInteraction() -> some View {
         HStack(spacing: 6) {

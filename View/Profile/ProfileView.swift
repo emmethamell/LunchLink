@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 import FirebaseStorage
 import FirebaseFirestore
+import SwiftMessages
 
 struct ProfileView: View {
     //My Profile Data
@@ -19,6 +20,9 @@ struct ProfileView: View {
     @State var errorMessage: String = ""
     @State var showError: Bool = false
     @State var isLoading: Bool = false
+    
+    @State var userProfilePicData: Data?
+    @State var showImagePicker = false
     
     var body: some View {
         NavigationStack {
@@ -39,6 +43,9 @@ struct ProfileView: View {
                     Menu {
                         //logout
                         //delete account
+                        Button("Change Profile Photo", action: {
+                            showImagePicker.toggle()
+                        })
                         Button("Logout", action: logOutUser)
                         Button("Delete Account", role: .destructive, action: deleteAccount)
                     } label: {
@@ -59,6 +66,15 @@ struct ProfileView: View {
             if myProfile != nil{return} //task will be called any time we open tab, so we need to limit it to the first time (initial fetch)
             await fetchUserData()
         }
+        .sheet(isPresented: $showImagePicker) {
+            ImagePickerView(image: Binding(
+                get: { UIImage(data: userProfilePicData ?? Data()) },
+                set: { newImage in userProfilePicData = newImage?.jpegData(compressionQuality: 1.0) }
+            ), isPresented: $showImagePicker) { croppedImage in
+                userProfilePicData = croppedImage.jpegData(compressionQuality: 1.0)
+                uploadProfilePic(imageData: userProfilePicData!)
+            }
+        }
     }
     
     func fetchUserData()async{
@@ -69,6 +85,64 @@ struct ProfileView: View {
             myProfile = user
         })
     }
+    
+    func uploadProfilePic(imageData: Data) {
+        isLoading = true
+        Task {
+            do{
+                guard let imageData = userProfilePicData else {return}
+                
+                //delete the old photo in storage
+                let reference = Storage.storage().reference().child("Profile_Images").child(userUID)
+                try await reference.delete()
+                
+                let storageRef = Storage.storage().reference().child("Profile_Images").child(userUID)
+                let _ = try await storageRef.putDataAsync(imageData)
+
+                let downloadURL = try await storageRef.downloadURL()
+
+                try await Firestore.firestore().collection("Users").document(userUID).updateData([
+                    "userProfileURL": downloadURL.absoluteString
+                ])
+                
+                
+                let query = Firestore.firestore().collection("Invites").whereField("userUID", isEqualTo: userUID)
+                let querySnapshot = try await query.getDocuments()
+                if querySnapshot.documents.isEmpty {
+                    print("No documents found")
+                } else {
+                    for document in querySnapshot.documents {
+                        try await document.reference.updateData([
+                            "userProfileURL": downloadURL.absoluteString
+                        ])
+                        print("Document \(document.documentID) successfully updated")
+                    }
+                }
+                isLoading = false
+                DispatchQueue.main.async {
+                    self.showNotification()
+                }
+                
+                
+            }catch{
+                await setError(error)
+            }
+        }
+    }
+    
+    func showNotification() {
+        let view = MessageView.viewFromNib(layout: .cardView)
+        view.configureTheme(.success)
+        view.configureContent(title: "Profile Updated", body: "Pull down to refresh")
+        view.button?.isHidden = true
+        
+        var config = SwiftMessages.Config()
+        config.presentationStyle = .top
+        config.presentationContext = .window(windowLevel: .normal)
+        
+        SwiftMessages.show(config: config, view: view)
+    }
+
 
     func logOutUser() {
         try? Auth.auth().signOut()

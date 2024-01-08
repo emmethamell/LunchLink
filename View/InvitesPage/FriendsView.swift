@@ -24,9 +24,9 @@ struct FriendsView: View {
                 NavigationLink {
                     SearchUserView()
                 }label:{
-                    Image(systemName: "magnifyingglass")
+                    Image(systemName: "person.badge.plus")
                         .tint(.black)
-                        .scaleEffect(0.9)
+                        .scaleEffect(1.3)
                 }
                 .padding()
                 

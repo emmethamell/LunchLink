@@ -17,6 +17,9 @@
 		A15E8B832B350E4700456EAA /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = A15E8B822B350E4700456EAA /* FirebaseMessaging */; };
 		A15E8B872B3512EA00456EAA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A15E8B862B3512EA00456EAA /* GoogleService-Info.plist */; };
 		A16897752B3518ED00E18C4D /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16897742B3518ED00E18C4D /* NotificationHandler.swift */; };
+		A1766EF22B4B6CEF00F665FC /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = A1766EF12B4B6CEF00F665FC /* CropViewController */; };
+		A1766EF42B4B6CEF00F665FC /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = A1766EF32B4B6CEF00F665FC /* TOCropViewController */; };
+		A1766EF62B4B6D2E00F665FC /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1766EF52B4B6D2E00F665FC /* ImagePickerView.swift */; };
 		A1AC891A2B01D18200831625 /* InviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC89192B01D18100831625 /* InviteView.swift */; };
 		A1AC891D2B01D54400831625 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC891C2B01D54400831625 /* ProfileView.swift */; };
 		A1AC891F2B02D9F400831625 /* ReusableProfileContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1AC891E2B02D9F400831625 /* ReusableProfileContent.swift */; };
@@ -66,6 +69,7 @@
 		A15E8B812B35039500456EAA /* LunchLink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LunchLink.entitlements; sourceTree = "<group>"; };
 		A15E8B862B3512EA00456EAA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		A16897742B3518ED00E18C4D /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
+		A1766EF52B4B6D2E00F665FC /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		A1AC89192B01D18100831625 /* InviteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteView.swift; sourceTree = "<group>"; };
 		A1AC891C2B01D54400831625 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		A1AC891E2B02D9F400831625 /* ReusableProfileContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProfileContent.swift; sourceTree = "<group>"; };
@@ -93,10 +97,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1AC89222B02DC1400831625 /* SDWebImageSwiftUI in Frameworks */,
+				A1766EF42B4B6CEF00F665FC /* TOCropViewController in Frameworks */,
 				A1C985FE2AE61B8400314A7E /* FirebaseAuth in Frameworks */,
 				A15E8B832B350E4700456EAA /* FirebaseMessaging in Frameworks */,
 				A1C986092AE635F500314A7E /* FirebaseStorage in Frameworks */,
 				A1C986052AE635E000314A7E /* FirebaseFirestore in Frameworks */,
+				A1766EF22B4B6CEF00F665FC /* CropViewController in Frameworks */,
 				A14CF5B22B0ADCBE006E8BCD /* SwiftMessages in Frameworks */,
 				A1C986072AE635EC00314A7E /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -223,6 +229,7 @@
 			children = (
 				A1C986012AE61C1000314A7E /* LoginView.swift */,
 				A1C986102AEF6CF000314A7E /* RegisterView.swift */,
+				A1766EF52B4B6D2E00F665FC /* ImagePickerView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -277,6 +284,8 @@
 				A1AC89212B02DC1400831625 /* SDWebImageSwiftUI */,
 				A14CF5B12B0ADCBE006E8BCD /* SwiftMessages */,
 				A15E8B822B350E4700456EAA /* FirebaseMessaging */,
+				A1766EF12B4B6CEF00F665FC /* CropViewController */,
+				A1766EF32B4B6CEF00F665FC /* TOCropViewController */,
 			);
 			productName = LunchLink;
 			productReference = A1C985E92AE617DE00314A7E /* LunchLink.app */;
@@ -310,6 +319,7 @@
 				A1C985FC2AE61B8400314A7E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A1AC89202B02DC1400831625 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 				A12086002B05C62500F6FFC4 /* XCRemoteSwiftPackageReference "SwiftMessages" */,
+				A1766EF02B4B6CEF00F665FC /* XCRemoteSwiftPackageReference "TOCropViewController" */,
 			);
 			productRefGroup = A1C985EA2AE617DE00314A7E /* Products */;
 			projectDirPath = "";
@@ -340,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A12086062B05C93A00F6FFC4 /* ReusableInviteView.swift in Sources */,
+				A1766EF62B4B6D2E00F665FC /* ImagePickerView.swift in Sources */,
 				A1C9860B2AE6E3A200314A7E /* User.swift in Sources */,
 				A1C986162AEF6E5100314A7E /* MainView.swift in Sources */,
 				A14CF5B82B0C0F7F006E8BCD /* FriendRequest.swift in Sources */,
@@ -501,6 +512,7 @@
 				INFOPLIST_FILE = "LunchLink-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow access to photos to choose a profile picture";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -536,6 +548,7 @@
 				INFOPLIST_FILE = "LunchLink-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "";
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow access to photos to choose a profile picture";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -587,6 +600,14 @@
 				minimumVersion = 9.0.9;
 			};
 		};
+		A1766EF02B4B6CEF00F665FC /* XCRemoteSwiftPackageReference "TOCropViewController" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TimOliver/TOCropViewController.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.1;
+			};
+		};
 		A1AC89202B02DC1400831625 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
@@ -615,6 +636,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A1C985FC2AE61B8400314A7E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		A1766EF12B4B6CEF00F665FC /* CropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1766EF02B4B6CEF00F665FC /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = CropViewController;
+		};
+		A1766EF32B4B6CEF00F665FC /* TOCropViewController */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1766EF02B4B6CEF00F665FC /* XCRemoteSwiftPackageReference "TOCropViewController" */;
+			productName = TOCropViewController;
 		};
 		A1AC89212B02DC1400831625 /* SDWebImageSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;

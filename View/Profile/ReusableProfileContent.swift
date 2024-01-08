@@ -12,8 +12,6 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import SDWebImageSwiftUI
 
-//FIXME: When user1 is looking at someones profile and user2 requests to be friends while they are there, the button does not get updated automatically, allowing for user1 make another friend request. There are requests going either way, with no way to actually become friends.
-
 
 struct ReusableProfileContent: View {
     var user: User      //user object for the other user
@@ -64,7 +62,7 @@ struct ReusableProfileContent: View {
                         currentUserUID: userUID,
                         friendRequestStatus: $friendRequestStatus,
                         onAddFriend: {
-                                createFriendRequest(userUID: userUID, otherUserUID: user.userUID)
+                            createFriendRequest(userUID: userUID, otherUserUID: user.userUID)
                         },
                         onAcceptFriendRequest: {
                             print("accept friend request")
@@ -73,6 +71,12 @@ struct ReusableProfileContent: View {
                         onDeclineFriendRequest: {
                             deleteFriendRequest(receiverID: userUID, senderID: user.id!)
                             print("deny friend request")
+                        },
+                        onRemoveFriend: {
+                            deleteFriendRequest(receiverID: userUID, senderID: user.id!)
+                            deleteFriendRequest(receiverID: user.id!, senderID: userUID)
+                            removeFromEacothersFriendLists()
+                            
                         },
                         buttonMessage: $buttonMessage
                     )
@@ -177,7 +181,7 @@ struct ReusableProfileContent: View {
                 "status": "accepted"
             ])
         }
-        addToEachothersFriendLists(userOneUID: userUID, userTwoUID: otherUserUID)
+        addToEachothersFriendLists()
         determineFriendRequestStatus(userUID: userUID, otherUserUID: otherUserUID)
     }
     
@@ -209,13 +213,24 @@ struct ReusableProfileContent: View {
         })
     }
     
-    func addToEachothersFriendLists(userOneUID: String, userTwoUID: String) {
+    func addToEachothersFriendLists() {
         Task{
             try await Firestore.firestore().collection("Users").document(userUID).updateData([
                 "friends": FieldValue.arrayUnion([user.userUID])
             ])
             try await Firestore.firestore().collection("Users").document(user.userUID).updateData([
                 "friends": FieldValue.arrayUnion([userUID])
+            ])
+        }
+    }
+    
+    func removeFromEacothersFriendLists() {
+        Task{
+            try await Firestore.firestore().collection("Users").document(userUID).updateData([
+                "friends": FieldValue.arrayRemove([user.userUID])
+            ])
+            try await Firestore.firestore().collection("Users").document(user.userUID).updateData([
+                "friends": FieldValue.arrayRemove([userUID])
             ])
         }
     }

@@ -23,6 +23,8 @@ struct Friendship_Button: View {
     var onAddFriend: () -> Void
     var onAcceptFriendRequest: () -> Void
     var onDeclineFriendRequest: () -> Void
+    var onRemoveFriend: () -> Void
+    @State private var showAlert = false
     
     @Binding var buttonMessage: String
     
@@ -32,6 +34,9 @@ struct Friendship_Button: View {
                 if buttonMessage == "pending" {
                     print("pending")
                 } else if buttonMessage == "friends!" {
+                    //TODO: Add popup screen that asks them if they want to remove the friend
+                    self.showAlert = true
+
                     print("already friends")
                 } else if buttonMessage == "add friend" {
                     checkFriendRequest(curUserID: currentUserUID, otherUserID: user.id!) { exists in
@@ -50,6 +55,17 @@ struct Friendship_Button: View {
                 Text(buttonMessage)
             }
             .buttonStyle(CustomButtonStyle())
+            .alert(isPresented: $showAlert){
+                Alert(
+                    title: Text("Remove Friend"),
+                    message: Text("Are you sure you want to remove this friend?"),
+                    primaryButton: .destructive(Text("Yes")) {
+                        print("Friend removed")
+                        onRemoveFriend()
+                    },
+                    secondaryButton: .cancel()
+                )
+            }
         } else {
             Text("This person wants to be your friend!")
             HStack {

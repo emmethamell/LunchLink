@@ -82,11 +82,9 @@ struct LoginView: View {
         .overlay(content: {
             LoadingView(show: $isLoading)
         })
-        // Register View Via Sheets
         .fullScreenCover(isPresented: $createAccount) {
             RegisterView()
         }
-        // Displaying alert
         .alert(errorMessage, isPresented: $showError, actions: {})
     }
     

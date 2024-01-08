@@ -14,6 +14,8 @@ struct ReusableInviteView: View {
     var uid: String = ""
     
     @Binding var invites: [Invite]
+    
+    @State private var users: [String: User] = [:]
 
     @State private var isFetching: Bool = true
 
@@ -55,6 +57,7 @@ struct ReusableInviteView: View {
                 paginationDoc = nil
                 await fetchUserData()
                 await fetchInvites()
+                await fetchUsersForInvites()
                 isFetching = false
             }
             .task {
@@ -62,6 +65,7 @@ struct ReusableInviteView: View {
                 if curUser != nil{return} //task will be called any time we open tab, so we need to limit it to the first time (initial fetch)
                 await fetchUserData()
                 await fetchInvites()
+                await fetchUsersForInvites()
                 isFetching = false
                 
             }
@@ -77,33 +81,48 @@ struct ReusableInviteView: View {
         })
     }
     
+    func fetchUsersForInvites() async {
+        let userUIDs = Set(invites.map { $0.userUID }) // Get unique user UIDs from invites
+        for uid in userUIDs {
+            if let user = try? await Firestore.firestore().collection("Users").document(uid).getDocument(as: User.self) {
+                DispatchQueue.main.async {
+                    self.users[uid] = user
+                }
+            }
+        }
+    }
+    
     @ViewBuilder
     func Invites()->some View{
         ForEach(invites){invite in
-            InviteCardView(invite: invite) {updatedInvite in    //INVITE CARD VIEW -> updatedInvite passed to onUpdate callback
-                //updating post in the array
-                if let index = invites.firstIndex(where: { invite in
-                    invite.id == updatedInvite.id
-                }){
-                    invites[index].likedIDs = updatedInvite.likedIDs
-                }
-            } onDelete: {
-                //removing post from array
-                withAnimation(.easeInOut(duration: 0.25)){
-                    invites.removeAll{invite.id == $0.id}
-                }
-            }
-            .onAppear{
-                //when last post appears, fetch new post
-                if invite.id == invites.last?.id && paginationDoc != nil{
-                    Task{
-                        await fetchInvites()
+            if let user = users[invite.userUID]{
+                InviteCardView(invite: invite, user: user) { updatedInvite in    //INVITE CARD VIEW -> updatedInvite passed to onUpdate callback
+                    //updating post in the array
+                    if let index = invites.firstIndex(where: { invite in
+                        invite.id == updatedInvite.id
+                    }){
+                        invites[index].likedIDs = updatedInvite.likedIDs
+                    }
+                } onDelete: {
+                    //removing post from array
+                    withAnimation(.easeInOut(duration: 0.25)){
+                        invites.removeAll{invite.id == $0.id}
                     }
                 }
+                
+                
+                .onAppear{
+                    //when last post appears, fetch new post
+                    if invite.id == invites.last?.id && paginationDoc != nil{
+                        Task{
+                            await fetchInvites()
+                        }
+                    }
+                }
+                
+                Divider()
+                    .padding(.horizontal, -15)
             }
-            
-            Divider()
-                .padding(.horizontal, -15)
         }
     }
     

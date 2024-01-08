@@ -71,7 +71,15 @@ struct RegisterView: View{
         .overlay(content: {
             LoadingView(show: $isLoading)
         })
-        .photosPicker(isPresented: $showImagePicker, selection: $photoItem)
+        .sheet(isPresented: $showImagePicker) {
+            ImagePickerView(image: Binding(
+                get: { UIImage(data: userProfilePicData ?? Data()) },
+                set: { newImage in userProfilePicData = newImage?.jpegData(compressionQuality: 1.0) }
+            ), isPresented: $showImagePicker) { croppedImage in
+                userProfilePicData = croppedImage.jpegData(compressionQuality: 1.0)
+            }
+        }
+        //.photosPicker(isPresented: $showImagePicker, selection: $photoItem)
         .onChange(of: photoItem) { newValue in
             if let newValue{
                 Task{
@@ -90,24 +98,30 @@ struct RegisterView: View{
     @ViewBuilder
     func HelperView()->some View {
         VStack(spacing: 12) {
-            ZStack {
-                if let userProfilePicData,let image = UIImage(data: userProfilePicData) {
-                    Image(uiImage: image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                }else{
-                    Image("NullProfile")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
+          
+                ZStack {
+                    if let userProfilePicData = userProfilePicData,let image = UIImage(data: userProfilePicData) {
+                        Image(uiImage: image)
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    }else{
+                        Image("NullProfile")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    }
                 }
-            }
-            .frame(width: 85, height: 85)
-            .clipShape(Circle())
-            .contentShape(Circle())
-            .onTapGesture {
-                showImagePicker.toggle()
-            }
-            .padding(.top,25)
+                .frame(width: 85, height: 85)
+                .clipShape(Circle())
+                .contentShape(Circle())
+                .onTapGesture {
+                    showImagePicker.toggle()
+                }
+                .padding(.top,25)
+                Text("Choose Profile Photo!")
+                    .font(.caption)
+                    .foregroundColor(.gray)
+                    .padding(.bottom, 25)
+
             
             TextField("First Name", text: $firstName)
                 .textContentType(.emailAddress)
