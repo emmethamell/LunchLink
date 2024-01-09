@@ -17,7 +17,7 @@ struct ReusableProfileContent: View {
     var user: User      //user object for the other user
     var userUID: String //userUID for the current user
 
-    // @AppStorage("user_UID") private var userUID: String = ""
+   // @AppStorage("user_UID") private var userUID: String = ""
     @State private var friendRequestStatus: FriendRequest.RequestStatus?
     @State private var buttonMessage: String = ""
     
@@ -27,11 +27,13 @@ struct ReusableProfileContent: View {
     @State private var fetchedInvites: [Invite] = []
     
     //keep track of the curRequest. The one between you and the user you are looking at, if any
-    @State var curRequest: FriendRequest = FriendRequest(id: "", senderID: "", receiverID: "", status: .pending)
+    @State var curRequest: FriendRequest = FriendRequest(senderID: "", receiverID: "", status: .pending) //CHANGED
     
+    @AppStorage("first_name") var firstName = ""
+    @AppStorage("last_name") var lastName = ""
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
+        ScrollView(.vertical, showsIndicators: false) { 
             LazyVStack{
                 HStack(spacing: 12){
                     WebImage(url: user.userProfileURL).placeholder{
@@ -198,8 +200,31 @@ struct ReusableProfileContent: View {
             }
             //update the request status so the binding var in child view changes
             determineFriendRequestStatus(userUID: userUID, otherUserUID: user.userUID)
+            fetchTokensAndSendNotification(forUserUID: otherUserUID)
        
     }
+    
+    
+    func fetchTokensAndSendNotification(forUserUID userUID: String) {
+        let db = Firestore.firestore()
+        db.collection("Users").document(userUID).getDocument { (document, error) in
+            if let document = document, document.exists { //get other users "User" doc
+                if let token = document.data()?["token"] as? String {
+                    
+                    var tokens: [String] = []
+                    tokens.append(token)
+                    NotificationHandler.shared.sendNotificationRequest(
+                        header: firstName + " " + lastName + " wants to be friends!",
+                        body: "",
+                        fcmTokens: tokens)
+                }
+                
+            } else {
+                print("Document does not exist or error: \(error?.localizedDescription ?? "")")
+            }
+        }
+    }
+     
     
     func createDocumentAtFirebase(_ invite: FriendRequest)async throws{
         let _ = try Firestore.firestore().collection("FriendRequests").addDocument(from: invite, completion: { error in

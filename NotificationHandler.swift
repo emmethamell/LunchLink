@@ -17,8 +17,7 @@ class NotificationHandler: NSObject, UIApplicationDelegate, UNUserNotificationCe
     
     static let shared = NotificationHandler()
     
-
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         requestNotificationPermission()
         application.registerForRemoteNotifications()
@@ -39,10 +38,8 @@ class NotificationHandler: NSObject, UIApplicationDelegate, UNUserNotificationCe
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        //set the APNs token for Firebase Messaging
         Messaging.messaging().apnsToken = deviceToken
 
-        // now fetch the FCM token
         Messaging.messaging().token { token, error in
             if let error = error {
                 print("Error fetching FCM registration token: \(error)")

@@ -20,5 +20,143 @@
             landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1373F0EB-453D-4169-AD18-B302ACD46B82"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "View/Profile/ProfileView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "ProfileView"
+            landmarkType = "14">
+            <Locations>
+               <Location
+                  uuid = "1373F0EB-453D-4169-AD18-B302ACD46B82 - ef7d971d454f7fdc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "property wrapper backing initializer of LunchLink.ProfileView.errorMessage : Swift.String"
+                  moduleName = "LunchLink"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emmethamell/Desktop/LLFiles/LunchLink/View/Profile/ProfileView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "36">
+               </Location>
+               <Location
+                  uuid = "1373F0EB-453D-4169-AD18-B302ACD46B82 - f607bf62a25877b2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LunchLink.ProfileView.errorMessage.getter : Swift.String"
+                  moduleName = "LunchLink"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emmethamell/Desktop/LLFiles/LunchLink/View/Profile/ProfileView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "1373F0EB-453D-4169-AD18-B302ACD46B82 - 4d08f36d2f711acd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LunchLink.ProfileView.errorMessage.setter : Swift.String"
+                  moduleName = "LunchLink"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emmethamell/Desktop/LLFiles/LunchLink/View/Profile/ProfileView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "1373F0EB-453D-4169-AD18-B302ACD46B82 - bc11ce2199493efc"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LunchLink.ProfileView.errorMessage.modify : Swift.String"
+                  moduleName = "LunchLink"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emmethamell/Desktop/LLFiles/LunchLink/View/Profile/ProfileView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "1373F0EB-453D-4169-AD18-B302ACD46B82 - 55188a39343092ae"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LunchLink.ProfileView.errorMessage.modify : Swift.String with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "LunchLink"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emmethamell/Desktop/LLFiles/LunchLink/%3Ccompiler-generated%3E"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "1373F0EB-453D-4169-AD18-B302ACD46B82 - 4e14896d3760a705"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "LunchLink.ProfileView.$errorMessage.getter : SwiftUI.Binding&lt;Swift.String&gt;"
+                  moduleName = "LunchLink"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emmethamell/Desktop/LLFiles/LunchLink/View/Profile/ProfileView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "1373F0EB-453D-4169-AD18-B302ACD46B82 - 858e583adb0617eb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "default argument 2 of LunchLink.ProfileView.init(logStatus: Swift.Bool, userUID: Swift.String, errorMessage: Swift.String, showError: Swift.Bool, isLoading: Swift.Bool, userProfilePicData: Swift.Optional&lt;Foundation.Data&gt;, showImagePicker: Swift.Bool) -&gt; LunchLink.ProfileView"
+                  moduleName = "LunchLink"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emmethamell/Desktop/LLFiles/LunchLink/View/Profile/ProfileView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  uuid = "1373F0EB-453D-4169-AD18-B302ACD46B82 - 9f0cb237ec182db0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "default argument 3 of LunchLink.ProfileView.init(logStatus: Swift.Bool, userUID: Swift.String, profileURL: SwiftUI.AppStorage&lt;Swift.Optional&lt;Foundation.URL&gt;&gt;, errorMessage: Swift.String, showError: Swift.Bool, isLoading: Swift.Bool, userProfilePicData: Swift.Optional&lt;Foundation.Data&gt;, showImagePicker: Swift.Bool) -&gt; LunchLink.ProfileView"
+                  moduleName = "LunchLink"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/emmethamell/Desktop/LLFiles/LunchLink/View/Profile/ProfileView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

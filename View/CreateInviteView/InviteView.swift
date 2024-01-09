@@ -139,11 +139,12 @@ struct InviteView: View {
         SwiftMessages.show(config: config, view: view)
     }
     
+
     func fetchTokensAndSendNotification(forUserUID userUID: String) {
         let db = Firestore.firestore()
         db.collection("Users").document(userUID).getDocument { (document, error) in
             if let document = document, document.exists {
-                //assuming friends' UIDs are stored in an array field "friendsUIDs"
+
                 guard let friendsUIDs = document.data()?["friends"] as? [String] else { return }
                 print("now here")
                 var tokens: [String] = []

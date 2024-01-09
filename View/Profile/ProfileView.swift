@@ -16,6 +16,7 @@ struct ProfileView: View {
     @State private var myProfile : User?
     @AppStorage("log_status") var logStatus: Bool = false
     @AppStorage("user_UID") var userUID: String = ""
+    @AppStorage("user_profile_url") private var profileURL: URL? //GET RID OF PRIVATE FOR CORRECT UPDATE OF PROFILE PIC
     //View properties
     @State var errorMessage: String = ""
     @State var showError: Bool = false
@@ -100,6 +101,7 @@ struct ProfileView: View {
                 let _ = try await storageRef.putDataAsync(imageData)
 
                 let downloadURL = try await storageRef.downloadURL()
+                profileURL = downloadURL
 
                 try await Firestore.firestore().collection("Users").document(userUID).updateData([
                     "userProfileURL": downloadURL.absoluteString

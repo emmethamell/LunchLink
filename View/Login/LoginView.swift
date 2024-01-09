@@ -27,7 +27,7 @@ struct LoginView: View {
     @AppStorage("first_name") var firstNameStored = ""
     @AppStorage("last_name") var lastNameStored = ""
     
-    var body: some View {
+    var body: some View { //emmet
         VStack(spacing: 10) {
             Text("Sign in")
                 .font(.largeTitle.bold())

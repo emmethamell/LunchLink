@@ -23,11 +23,16 @@ struct SearchUserView: View {
             List{
                 ForEach(fetchedUsers){user in
                     NavigationLink{
-                        ReusableProfileContent(user: user, userUID: userUID)
+                        //TODO: Isolate the cause for why everything freezes when you add this link.
+                        ReusableProfileTEST(user: user, userUID: userUID)
+                        
+                        
+                        //ReusableProfileContent(user: user, userUID: userUID)
+                        
                     }label:{
                         Text(user.username)
                             .font(.callout)
-                            .hAlign(.leading )
+                            .hAlign(.leading)
                     }
                 }
             }
@@ -37,9 +42,11 @@ struct SearchUserView: View {
             .searchable(text: $searchText)
             .onSubmit(of: .search, {
                 //fetch user from firebase
+                print("one")
                 Task{
                     await searchUsers()
                 }
+                print("two")
             })
             .onChange(of: searchText, perform: { newValue in
                 if newValue.isEmpty{
@@ -62,32 +69,39 @@ struct SearchUserView: View {
 
         }
     }
-    
+    //emmet
     func fetchUserData()async{
         guard let userUID = Auth.auth().currentUser?.uid else{return}
+        print("three, userUID: ", userUID)
         guard let user = try? await Firestore.firestore().collection("Users").document(userUID).getDocument(as: User.self)
         else{return}
         await MainActor.run(body: {
+            print("myprofile: ", user)
             myProfile = user
         })
     }
     
     func searchUsers()async{
         do{
-            
+            print("four")
             
             let documents = try await Firestore.firestore().collection("Users")
                 .whereField("username", isGreaterThanOrEqualTo: searchText)
                 .whereField("username", isLessThanOrEqualTo: "\(searchText)\u{f8ff}")
                 .getDocuments()
-            
+            print("five")
             let users = try documents.documents.compactMap{ doc -> User? in
                 try doc.data(as: User.self)
             }
+            print("six")
             
             await MainActor.run(body: {
                 fetchedUsers = users
+                for user in fetchedUsers{
+                    print("user: ", user)
+                }
             })
+            print("seven")
         }catch{
             print(error.localizedDescription)
         }

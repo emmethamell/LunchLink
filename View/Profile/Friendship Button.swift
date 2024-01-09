@@ -70,7 +70,7 @@ struct Friendship_Button: View {
             Text("This person wants to be your friend!")
             HStack {
                 
-                Button(action: {
+                Button(action: { 
                     onAcceptFriendRequest()
                 }) {
                     Text("Accept")
