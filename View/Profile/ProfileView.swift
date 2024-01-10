@@ -16,7 +16,11 @@ struct ProfileView: View {
     @State private var myProfile : User?
     @AppStorage("log_status") var logStatus: Bool = false
     @AppStorage("user_UID") var userUID: String = ""
-    @AppStorage("user_profile_url") private var profileURL: URL? //GET RID OF PRIVATE FOR CORRECT UPDATE OF PROFILE PIC
+    @AppStorage("user_profile_url") var profileURL: URL? 
+    
+    @AppStorage("first_name") private var firstName = ""
+    @AppStorage("last_name") private var lastName = ""
+    
     //View properties
     @State var errorMessage: String = ""
     @State var showError: Bool = false
@@ -29,7 +33,7 @@ struct ProfileView: View {
         NavigationStack {
             VStack {
                 if let myProfile{
-                    ReusableProfileContent(user: myProfile, userUID: userUID)
+                    ReusableProfileContent(user: myProfile, userUID: userUID, firstName: firstName, lastName: lastName)
                         .refreshable {
                             self.myProfile = nil
                             await fetchUserData()

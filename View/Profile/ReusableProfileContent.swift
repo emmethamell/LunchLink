@@ -16,8 +16,11 @@ import SDWebImageSwiftUI
 struct ReusableProfileContent: View {
     var user: User      //user object for the other user
     var userUID: String //userUID for the current user
+    
+    var firstName: String
+    var lastName: String
 
-   // @AppStorage("user_UID") private var userUID: String = ""
+    //@AppStorage("user_UID") private var test: String = ""
     @State private var friendRequestStatus: FriendRequest.RequestStatus?
     @State private var buttonMessage: String = ""
     
@@ -29,8 +32,10 @@ struct ReusableProfileContent: View {
     //keep track of the curRequest. The one between you and the user you are looking at, if any
     @State var curRequest: FriendRequest = FriendRequest(senderID: "", receiverID: "", status: .pending) //CHANGED
     
-    @AppStorage("first_name") var firstName = ""
-    @AppStorage("last_name") var lastName = ""
+    
+    //these are messing things up looks like
+   // @AppStorage("first_name") var firstName = ""
+   // @AppStorage("last_name") var lastName = ""
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) { 
@@ -214,7 +219,8 @@ struct ReusableProfileContent: View {
                     var tokens: [String] = []
                     tokens.append(token)
                     NotificationHandler.shared.sendNotificationRequest(
-                        header: firstName + " " + lastName + " wants to be friends!",
+                       // header: firstName + " " + lastName + " wants to be friends!",
+                        header: "test",
                         body: "",
                         fcmTokens: tokens)
                 }

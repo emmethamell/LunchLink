@@ -17,17 +17,16 @@ struct SearchUserView: View {
     @State private var myProfile : User?
     @AppStorage("user_UID") private var userUID: String = ""
     @Environment(\.dismiss) private var dismiss
+    
+    @AppStorage("first_name") private var firstName = ""
+    @AppStorage("last_name") private var lastName = ""
 
     var body: some View {
         NavigationStack{
             List{
                 ForEach(fetchedUsers){user in
                     NavigationLink{
-                        //TODO: Isolate the cause for why everything freezes when you add this link.
-                        ReusableProfileTEST(user: user, userUID: userUID)
-                        
-                        
-                        //ReusableProfileContent(user: user, userUID: userUID)
+                        ReusableProfileContent(user: user, userUID: userUID, firstName: firstName, lastName: lastName)
                         
                     }label:{
                         Text(user.username)
@@ -69,39 +68,33 @@ struct SearchUserView: View {
 
         }
     }
-    //emmet
+
     func fetchUserData()async{
         guard let userUID = Auth.auth().currentUser?.uid else{return}
-        print("three, userUID: ", userUID)
         guard let user = try? await Firestore.firestore().collection("Users").document(userUID).getDocument(as: User.self)
         else{return}
         await MainActor.run(body: {
-            print("myprofile: ", user)
             myProfile = user
         })
     }
     
     func searchUsers()async{
         do{
-            print("four")
             
             let documents = try await Firestore.firestore().collection("Users")
                 .whereField("username", isGreaterThanOrEqualTo: searchText)
                 .whereField("username", isLessThanOrEqualTo: "\(searchText)\u{f8ff}")
                 .getDocuments()
-            print("five")
+            
             let users = try documents.documents.compactMap{ doc -> User? in
                 try doc.data(as: User.self)
             }
-            print("six")
             
             await MainActor.run(body: {
                 fetchedUsers = users
                 for user in fetchedUsers{
-                    print("user: ", user)
                 }
             })
-            print("seven")
         }catch{
             print(error.localizedDescription)
         }

@@ -22,11 +22,16 @@ struct InviteCardView: View {
     
     @AppStorage("user_UID") private var userUID: String = ""
     
+    @AppStorage("first_name") private var firstName = ""
+    @AppStorage("last_name") private var lastName = ""
+    
     @State private var docListner: ListenerRegistration?
     
     @State private var showingLikedUsers = false
     
     @State private var showProfile = false
+    
+    
     
 
     
@@ -56,7 +61,7 @@ struct InviteCardView: View {
         }
         .sheet(isPresented: $showProfile) {
             // only present this sheet if otherProfile is not nil
-                ReusableProfileContent(user: user, userUID: userUID)
+            ReusableProfileContent(user: user, userUID: userUID, firstName: firstName, lastName: lastName)
            
         }
 

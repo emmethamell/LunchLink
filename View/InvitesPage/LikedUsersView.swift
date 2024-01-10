@@ -12,10 +12,13 @@ struct LikedUsersView: View {
     var userUIDs: [String]
     @AppStorage("user_UID") private var currentUserUID: String = ""
     
+    @AppStorage("first_name") private var firstName = ""
+    @AppStorage("last_name") private var lastName = ""
+    
     var body: some View {
         NavigationView {
             List(viewModel.users) { user in
-                NavigationLink(destination: ReusableProfileContent(user: user, userUID: currentUserUID)) {
+                NavigationLink(destination: ReusableProfileContent(user: user, userUID: currentUserUID, firstName: firstName, lastName: lastName)) {
                     HStack {
                         AsyncImage(url: user.userProfileURL) { phase in
                             switch phase {
