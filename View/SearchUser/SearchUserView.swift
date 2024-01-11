@@ -40,12 +40,9 @@ struct SearchUserView: View {
             .navigationTitle("Search User")
             .searchable(text: $searchText)
             .onSubmit(of: .search, {
-                //fetch user from firebase
-                print("one")
                 Task{
                     await searchUsers()
                 }
-                print("two")
             })
             .onChange(of: searchText, perform: { newValue in
                 if newValue.isEmpty{

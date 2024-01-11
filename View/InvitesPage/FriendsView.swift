@@ -13,6 +13,8 @@ struct FriendsView: View {
     @State private var recentInvites: [Invite] = []
     
     @AppStorage("user_UID") private var userUID: String = ""
+    @AppStorage("first_name") private var firstName = ""
+    @AppStorage("last_name") private var lastName = ""
     
     var body: some View {
         
@@ -24,7 +26,7 @@ struct FriendsView: View {
                     .bold()
                 Spacer()
                 NavigationLink {
-                    PendingRequestsView(curUserUID: userUID)
+                    PendingRequestsView(curUserUID: userUID, firstName: firstName, lastName: lastName)
                 }label:{
                     Image(systemName: "bell")
                         .tint(.black)

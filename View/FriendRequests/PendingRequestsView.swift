@@ -13,26 +13,71 @@ import FirebaseStorage
 
 struct PendingRequestsView: View {
     var curUserUID: String
+    var firstName: String
+    var lastName: String
+    
     @AppStorage("user_UID") private var userUID: String = ""
     
     @State private var showNoPendingRequestsMessage = false
     @State private var pendingUsers: [User] = []
     
+    @State private var showProfile = false
+    
+    @State private var selectedUser: User?
+    @State private var acceptedUserIDs: Set<String> = []
+    
+    
     var body: some View {
-        VStack {
+        NavigationStack {
             if showNoPendingRequestsMessage {
                 Text("No pending friend requests")
                     .foregroundColor(.gray)
                     .font(.title2)
                     .padding()
             } else {
-                List(pendingUsers, id: \.userUID) { user in
-                    Text(user.username) // display the user info here
-                }
+                List{
+                    ForEach(pendingUsers, id: \.userUID) { user in
+                        HStack{
+                            Button(action: {
+                                self.selectedUser = user
+                            }) {
+                                Text(user.username)
+                            }
+                            
+                            Spacer()
+                            if acceptedUserIDs.contains(user.userUID) {
+                                Text("Friends!")
+                            } else {
+                                Button("Accept") {
+                                    print("Accepted \(user.username)")
+                                    //accept this user as a friend
+                                    acceptedUserIDs.insert(user.userUID)
+                                    let userService = FriendRequestService()
+                                    userService.acceptFriendRequest(userUID: userUID, otherUserUID: user.userUID)
+                                }
+                                .padding(.trailing)
+                                .foregroundColor(.green)
+                                
+                                Button("Decline") {
+                                    print("Declined \(user.username)")
+                                    //TODO: Add logic to decline friend request
+                                }
+                                .foregroundColor(.red)
+                            }
+                        }
+                    }
+                    }
+                .buttonStyle(BorderlessButtonStyle())
             }
         }
+        .navigationTitle("Friend Requests")
         .onAppear {
             fetchPendingRequests()
+        }
+        .sheet(item: $selectedUser) { user in
+            // only present this sheet if otherProfile is not nil
+            ReusableProfileContent(user: user, userUID: userUID, firstName: firstName, lastName: lastName)
+           
         }
     }
         
@@ -49,10 +94,6 @@ struct PendingRequestsView: View {
             }
         }
     }
-    
-
-    
-    
 }
 
 
