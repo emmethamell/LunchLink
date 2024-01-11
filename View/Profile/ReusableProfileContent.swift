@@ -130,18 +130,18 @@ struct ReusableProfileContent: View {
                 if let friendRequest = try? documents[0].data(as: FriendRequest.self) {
                     curRequest = friendRequest
                     if friendRequest.status == .pending {
-                        buttonMessage = "pending"
+                        buttonMessage = "Pending"
                     }
                     if friendRequest.status == .accepted {
-                        buttonMessage = "friends!"
+                        buttonMessage = "Friends!"
                     }
                     if friendRequest.status == .declined {
-                        buttonMessage = "add friend"
+                        buttonMessage = "Add friend"
                     }
                    friendRequestStatus = friendRequest.status
                 } else {
                     friendRequestStatus = nil
-                    buttonMessage = "add friend"
+                    buttonMessage = "Add friend"
                 }
                 return
             }
@@ -156,7 +156,7 @@ struct ReusableProfileContent: View {
             .getDocuments { querySnapshot, error in
                 guard let documents = querySnapshot?.documents, !documents.isEmpty else {
                     //no request found, return .none or nil
-                    buttonMessage = "add friend"  //EXAMPLE OF WHAT TO DO,
+                    buttonMessage = "Add friend"  
                     friendRequestStatus = nil
                     return
                 }
@@ -168,10 +168,10 @@ struct ReusableProfileContent: View {
                         buttonMessage = "This person wants to be your friend!"
                     }
                     if friendRequest.status == .accepted {
-                        buttonMessage = "friends!"
+                        buttonMessage = "Friends!"
                     }
                     if friendRequest.status == .declined {
-                        buttonMessage = "add friend"
+                        buttonMessage = "Add friend"
                     }
                    friendRequestStatus = friendRequest.status
                 } else {
@@ -219,8 +219,7 @@ struct ReusableProfileContent: View {
                     var tokens: [String] = []
                     tokens.append(token)
                     NotificationHandler.shared.sendNotificationRequest(
-                       // header: firstName + " " + lastName + " wants to be friends!",
-                        header: "test",
+                        header: firstName + " " + lastName + " wants to be friends!",
                         body: "",
                         fcmTokens: tokens)
                 }
@@ -290,7 +289,7 @@ struct ReusableProfileContent: View {
                                      if let err = err {
                                          print("Error removing document: \(err)")
                                      } else {
-                                         buttonMessage = "add friend"
+                                         buttonMessage = "Add friend"
                                          print("Document successfully removed!")
                                      }
                                  }

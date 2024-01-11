@@ -10,7 +10,7 @@ import SwiftUI
 struct ActivitySelectionView: View {
     @Binding var selectedActivity: String
     //TODO: add some emojis or little symbols or something
-    @State private var activities = ["Breakfast 🥞", "Lunch 🍕", "Dinner 🍝", "Gym 💪", "Ball 🏀", "Drink 🍻", "Party 🎉", "Blaze 🔥", "Study 📚"]
+    @State private var activities = ["🥞 Breakfast", "🍕 Lunch", "🍝 Dinner", "💪 Gym", "🏀 Ball", "🍻 Drink", "🎉 Party", "🔥 Blaze", "📚Study", "🙏 Pray"]
 
     @Environment(\.dismiss) private var dismiss
     var body: some View {

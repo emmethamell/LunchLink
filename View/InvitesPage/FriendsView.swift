@@ -12,6 +12,8 @@ struct FriendsView: View {
     
     @State private var recentInvites: [Invite] = []
     
+    @AppStorage("user_UID") private var userUID: String = ""
+    
     var body: some View {
         
         VStack(alignment: .leading){
@@ -21,6 +23,14 @@ struct FriendsView: View {
                     .padding()
                     .bold()
                 Spacer()
+                NavigationLink {
+                    PendingRequestsView(curUserUID: userUID)
+                }label:{
+                    Image(systemName: "bell")
+                        .tint(.black)
+                        .scaleEffect(1.3)
+                }
+                
                 NavigationLink {
                     SearchUserView()
                 }label:{

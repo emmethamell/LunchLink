@@ -31,14 +31,14 @@ struct Friendship_Button: View {
     var body: some View {
         if buttonMessage != "This person wants to be your friend!" {
             Button(action: {
-                if buttonMessage == "pending" {
-                    print("pending")
-                } else if buttonMessage == "friends!" {
+                if buttonMessage == "Pending" {
+                  
+                } else if buttonMessage == "Friends!" {
                     //TODO: Add popup screen that asks them if they want to remove the friend
                     self.showAlert = true
 
                     print("already friends")
-                } else if buttonMessage == "add friend" {
+                } else if buttonMessage == "Add friend" {
                     checkFriendRequest(curUserID: currentUserUID, otherUserID: user.id!) { exists in
                         if exists {
                             print("A friend request already exists.")

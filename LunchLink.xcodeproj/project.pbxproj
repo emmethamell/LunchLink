@@ -44,6 +44,8 @@
 		A1D4B39D2B3F826A00407DF0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A1D4B39C2B3F826A00407DF0 /* .gitignore */; };
 		A1EB9D482B0C326C00A26252 /* Friendship Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EB9D472B0C326C00A26252 /* Friendship Button.swift */; };
 		A1FCE4252B4E0A8A0057EA99 /* ReusableProfileTEST.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FCE4242B4E0A8A0057EA99 /* ReusableProfileTEST.swift */; };
+		A1FCE4272B5066630057EA99 /* PendingRequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FCE4262B5066630057EA99 /* PendingRequestsView.swift */; };
+		A1FCE42C2B506D130057EA99 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FCE42B2B506D130057EA99 /* FirebaseService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -91,6 +93,8 @@
 		A1D4B39C2B3F826A00407DF0 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		A1EB9D472B0C326C00A26252 /* Friendship Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friendship Button.swift"; sourceTree = "<group>"; };
 		A1FCE4242B4E0A8A0057EA99 /* ReusableProfileTEST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProfileTEST.swift; sourceTree = "<group>"; };
+		A1FCE4262B5066630057EA99 /* PendingRequestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingRequestsView.swift; sourceTree = "<group>"; };
+		A1FCE42B2B506D130057EA99 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,8 +123,6 @@
 				A12086082B0691F800F6FFC4 /* InviteCardView.swift */,
 				A12086052B05C93A00F6FFC4 /* ReusableInviteView.swift */,
 				A12085FE2B054AE000F6FFC4 /* FriendsView.swift */,
-				A1D4B3962B36744700407DF0 /* LikedUsersView.swift */,
-				A1D4B39A2B37965F00407DF0 /* LikedUsersViewModel.swift */,
 			);
 			path = InvitesPage;
 			sourceTree = "<group>";
@@ -197,6 +199,8 @@
 		A1C985FF2AE61BCE00314A7E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A1FCE42A2B5066EB0057EA99 /* FriendRequests */,
+				A1FCE4292B5066C10057EA99 /* LikedUsers */,
 				A1EB9D492B0C609D00A26252 /* SearchUser */,
 				A120860B2B06B99900F6FFC4 /* CreateInviteView */,
 				A120860A2B06B95D00F6FFC4 /* InvitesPage */,
@@ -260,6 +264,24 @@
 				A1FCE4242B4E0A8A0057EA99 /* ReusableProfileTEST.swift */,
 			);
 			path = SearchUser;
+			sourceTree = "<group>";
+		};
+		A1FCE4292B5066C10057EA99 /* LikedUsers */ = {
+			isa = PBXGroup;
+			children = (
+				A1D4B39A2B37965F00407DF0 /* LikedUsersViewModel.swift */,
+				A1D4B3962B36744700407DF0 /* LikedUsersView.swift */,
+			);
+			path = LikedUsers;
+			sourceTree = "<group>";
+		};
+		A1FCE42A2B5066EB0057EA99 /* FriendRequests */ = {
+			isa = PBXGroup;
+			children = (
+				A1FCE4262B5066630057EA99 /* PendingRequestsView.swift */,
+				A1FCE42B2B506D130057EA99 /* FirebaseService.swift */,
+			);
+			path = FriendRequests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -371,6 +393,8 @@
 				A1C986022AE61C1000314A7E /* LoginView.swift in Sources */,
 				A1C985EF2AE617DE00314A7E /* ContentView.swift in Sources */,
 				A1AC891A2B01D18200831625 /* InviteView.swift in Sources */,
+				A1FCE4272B5066630057EA99 /* PendingRequestsView.swift in Sources */,
+				A1FCE42C2B506D130057EA99 /* FirebaseService.swift in Sources */,
 				A16897752B3518ED00E18C4D /* NotificationHandler.swift in Sources */,
 				A1C986142AEF6DA900314A7E /* View+Extensions.swift in Sources */,
 				A1C986112AEF6CF000314A7E /* RegisterView.swift in Sources */,
