@@ -7,4 +7,5 @@ build/
 !default.mode2v3
 !default.perspectivev3
 .xccheckout
-./GoogleService-Info.plist
+*./GoogleService-Info.plist
+*.xcuserstate
