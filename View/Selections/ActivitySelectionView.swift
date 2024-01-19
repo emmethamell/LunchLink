@@ -14,19 +14,23 @@ struct ActivitySelectionView: View {
 
     @Environment(\.dismiss) private var dismiss
     var body: some View {
-        ScrollView{
+        ScrollView(.vertical, showsIndicators: false){
             VStack {
-                Text("Choose an activity:")
-                    .font(.title)
-                    .padding()
-                
                 ForEach(activities, id: \.self) { activity in
                     Button(action: {
                         selectedActivity = activity
                         dismiss()
                     }) {
-                        Text(activity)
-                            .font(.title)
+                        HStack{
+                            Text(activity)
+                                .font(.title)
+                            
+                            if selectedActivity == activity {
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(.green)
+                            }
+                            
+                        }
                             .padding()
                             .frame(maxWidth: .infinity)
                             .background(Color.black)
@@ -36,7 +40,23 @@ struct ActivitySelectionView: View {
                     .padding(.all, 5)
                 }
             }
+            .padding()
         }
+        .overlay(
+            // Gradient overlay at the bottom
+            VStack {
+                // Top gradient
+                LinearGradient(gradient: Gradient(colors: [.white, .clear]), startPoint: .top, endPoint: .bottom)
+                    .frame(height: 10) // Adjust height as needed
+
+                Spacer()
+
+                // Bottom gradient
+                LinearGradient(gradient: Gradient(colors: [.white, .clear]), startPoint: .bottom, endPoint: .top)
+                    .frame(height: 10) // Adjust height as needed
+            }
+            .edgesIgnoringSafeArea(.vertical)
+            )
     }
 }
 

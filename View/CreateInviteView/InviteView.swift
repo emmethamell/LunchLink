@@ -50,29 +50,22 @@ struct InviteView: View {
                         Text("What do you want to do?")
                             .font(.title)
                         
-                        NavigationLink(destination: ActivitySelectionView(selectedActivity: $selectedActivity).toolbar(.hidden)) {
-                            Text(selectedActivity)
-                                .font(.title)
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color.black)
-                                .foregroundColor(.white)
-                                .cornerRadius(10)
-                        }
-                        
-                       
+                        ActivitySelectionView(selectedActivity: $selectedActivity)
+                            .padding()
+                    
                     }
-                    .padding()
+                   // .padding()
                 
                 Button(action: createInvite) {
                     Text("Post")
-                        .font(.callout)
+                        .font(.title)
                         .foregroundColor(.white)
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 6)
+                        .padding(.horizontal, 30)
+                        .padding(.vertical, 10)
                         .background(.black,in: Capsule())
                 }
                 .disableWithOpacity(selectedActivity == "Choose")
+                .padding(.bottom, 40)
                 
             }
             // end of stack
