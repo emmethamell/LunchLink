@@ -1,2 +1,2 @@
 # LunchLink
-An IOS application that allows users to create and manage events with friends
+An iOS application that allows users to create and manage events with friends
