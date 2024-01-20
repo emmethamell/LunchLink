@@ -31,7 +31,7 @@ struct ReusableInviteView: View {
         ScrollView(.vertical, showsIndicators: false){
                 LazyVStack{
                     if isFetching{
-                        ProgressView()
+                        EmptyView()
                             .padding(.top, 30)
                     }else{
                         if invites.isEmpty{

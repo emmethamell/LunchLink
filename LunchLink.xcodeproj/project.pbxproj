@@ -16,6 +16,7 @@
 		A14F84CA2B03046200349A9B /* ActivitySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14F84C92B03046200349A9B /* ActivitySelectionView.swift */; };
 		A15E8B832B350E4700456EAA /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = A15E8B822B350E4700456EAA /* FirebaseMessaging */; };
 		A15E8B872B3512EA00456EAA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A15E8B862B3512EA00456EAA /* GoogleService-Info.plist */; };
+		A164038E2B5B40BB0019EF8F /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A164038D2B5B40BB0019EF8F /* EmptyView.swift */; };
 		A16897752B3518ED00E18C4D /* NotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16897742B3518ED00E18C4D /* NotificationHandler.swift */; };
 		A1766EF22B4B6CEF00F665FC /* CropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = A1766EF12B4B6CEF00F665FC /* CropViewController */; };
 		A1766EF42B4B6CEF00F665FC /* TOCropViewController in Frameworks */ = {isa = PBXBuildFile; productRef = A1766EF32B4B6CEF00F665FC /* TOCropViewController */; };
@@ -71,6 +72,7 @@
 		A14F84CD2B030C3800349A9B /* LunchLink-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "LunchLink-Info.plist"; sourceTree = "<group>"; };
 		A15E8B812B35039500456EAA /* LunchLink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LunchLink.entitlements; sourceTree = "<group>"; };
 		A15E8B862B3512EA00456EAA /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		A164038D2B5B40BB0019EF8F /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		A16897742B3518ED00E18C4D /* NotificationHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationHandler.swift; sourceTree = "<group>"; };
 		A1766EF52B4B6D2E00F665FC /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		A1AC89192B01D18100831625 /* InviteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteView.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 			children = (
 				A1C9860C2AE7032900314A7E /* LoadingView.swift */,
 				A1C986132AEF6DA900314A7E /* View+Extensions.swift */,
+				A164038D2B5B40BB0019EF8F /* EmptyView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				A14F84CA2B03046200349A9B /* ActivitySelectionView.swift in Sources */,
 				A1FCE4252B4E0A8A0057EA99 /* ReusableProfileTEST.swift in Sources */,
 				A1AC891D2B01D54400831625 /* ProfileView.swift in Sources */,
+				A164038E2B5B40BB0019EF8F /* EmptyView.swift in Sources */,
 				A12086092B0691F800F6FFC4 /* InviteCardView.swift in Sources */,
 				A1AC891F2B02D9F400831625 /* ReusableProfileContent.swift in Sources */,
 				A1D4B39B2B37965F00407DF0 /* LikedUsersViewModel.swift in Sources */,
@@ -544,8 +548,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -580,8 +583,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

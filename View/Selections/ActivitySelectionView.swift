@@ -18,8 +18,12 @@ struct ActivitySelectionView: View {
             VStack {
                 ForEach(activities, id: \.self) { activity in
                     Button(action: {
-                        selectedActivity = activity
-                        dismiss()
+                        if activity == selectedActivity {
+                            selectedActivity = "Choose"
+                        } else {
+                            selectedActivity = activity
+                        }
+                        //dismiss()
                     }) {
                         HStack{
                             Text(activity)
