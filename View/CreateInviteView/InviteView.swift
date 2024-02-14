@@ -94,7 +94,7 @@ struct InviteView: View {
                 await setError(error)
             }
         }
-        fetchTokensAndSendNotification(forUserUID: userUID)
+        fetchTokensAndSendNotification(forUserUID: userUID, selectedActivity: selectedActivity)
     }
     
     func createDocumentAtFirebase(_ invite: Invite)async throws{
@@ -133,7 +133,7 @@ struct InviteView: View {
     }
     
 
-    func fetchTokensAndSendNotification(forUserUID userUID: String) {
+    func fetchTokensAndSendNotification(forUserUID userUID: String, selectedActivity: String) {
         let db = Firestore.firestore()
         db.collection("Users").document(userUID).getDocument { (document, error) in
             if let document = document, document.exists {
@@ -157,8 +157,8 @@ struct InviteView: View {
                 //send after fetching all notifications
                 group.notify(queue: .main) {
                     NotificationHandler.shared.sendNotificationRequest(
-                        header: firstName + " " + lastName + " wants to " + selectedActivity + "!",
-                        body: "",
+                        header: "LunchLink",
+                        body: firstName + " " + lastName + " wants to " + selectedActivity + "!",
                         fcmTokens: tokens)
                 }
 

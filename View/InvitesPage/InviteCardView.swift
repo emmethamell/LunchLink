@@ -10,15 +10,13 @@ import SDWebImageSwiftUI
 import Firebase
 import FirebaseStorage
 import FirebaseFirestore
+import Foundation
 
 struct InviteCardView: View {
     var invite: Invite
     var user: User
     var onUpdate: (Invite)->()
     var onDelete: ()->()
-    
-    
-    
     
     @AppStorage("user_UID") private var userUID: String = ""
     
@@ -31,9 +29,6 @@ struct InviteCardView: View {
     
     @State private var showProfile = false
     
-    
-    
-
     
     var body: some View {
         HStack(alignment: .top, spacing: 12){
@@ -50,12 +45,19 @@ struct InviteCardView: View {
                 Text(invite.userName)
                     .font(.callout)
                     .fontWeight(.semibold)
-                Text(invite.publishedDate.formatted(date: .numeric, time: .shortened))
+                
+                Text(formatDateString(invite.publishedDate))
                     .font(.caption2)
                     .foregroundColor(.gray)
-                Text("\(invite.first) \(invite.last) wants to \(invite.selectedActivity)")
-                    .textSelection(.enabled)
-                    .padding(.vertical, 8)
+                
+                //Text(invite.publishedDate.formatted(date: .numeric, time: .shortened))
+
+                Text("\(invite.first) \(invite.last) wants to ")
+                    +
+                Text(invite.selectedActivity)
+                    .bold()
+                   // .textSelection(.enabled)
+                    //.padding(.vertical, 8)
                 InviteInteraction()
             }
         }
@@ -119,23 +121,39 @@ struct InviteCardView: View {
                         .foregroundColor(.white)
                         .padding(.horizontal, 10)
                         .padding(.vertical, 5)
-                        .background(Color.green)
+                        .background(Color.mint)
                         .cornerRadius(8)
                 } else {
                     Text("I'm in!")
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 5)
+                        .cornerRadius(8)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.mint, lineWidth: 1)
+                        )
+                        
                 }
             }
-            
-            
-            Button(action: { showingLikedUsers = true }) {
-                HStack(spacing: 2) {
-
-                    Text("\(invite.likedIDs.count)")
-                        .font(.headline)
-                        .foregroundColor(.black)
-                }
-                .padding(6)
-                
+            Spacer()
+           
+                Button(action: { showingLikedUsers = true }) {
+                    HStack(spacing: 1){
+                        
+                        Text("\(invite.likedIDs.count) down")
+                            .font(.headline)
+                            .foregroundColor(.black)
+                            
+                        
+                        Image(systemName: "chevron.right")
+                            .foregroundColor(.black)
+                            .imageScale(.small)
+                            .scaleEffect(0.5)
+                            .font(Font.title.weight(.bold))
+                    }
+                    .padding(.trailing, 40)
+                    
+          
             }
             .buttonStyle(PlainButtonStyle())
             .sheet(isPresented: $showingLikedUsers) {
@@ -176,4 +194,11 @@ struct InviteCardView: View {
             }
         }
     }
+    
+    func formatDateString(_ date: Date) -> String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .full
+        return formatter.localizedString(for: date, relativeTo: Date.now)
+    }
+
 }

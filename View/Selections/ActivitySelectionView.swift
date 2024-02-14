@@ -10,7 +10,7 @@ import SwiftUI
 struct ActivitySelectionView: View {
     @Binding var selectedActivity: String
     //TODO: add some emojis or little symbols or something
-    @State private var activities = ["🥞 Breakfast", "🍕 Lunch", "🍝 Dinner", "💪 Gym", "🏀 Ball", "🍻 Drink", "🎉 Party", "🔥 Blaze", "📚Study", "🙏 Pray"]
+    @State private var activities = ["🥞 Breakfast", "🍕 Lunch", "🍝 Dinner", "💪 Gym", "🏀 Ball", "🍻 Drink", "🎉 Party", "📚Study", "🙏 Pray"]
 
     @Environment(\.dismiss) private var dismiss
     var body: some View {
@@ -47,17 +47,13 @@ struct ActivitySelectionView: View {
             .padding()
         }
         .overlay(
-            // Gradient overlay at the bottom
             VStack {
-                // Top gradient
                 LinearGradient(gradient: Gradient(colors: [.white, .clear]), startPoint: .top, endPoint: .bottom)
-                    .frame(height: 10) // Adjust height as needed
+                    .frame(height: 10)
 
                 Spacer()
-
-                // Bottom gradient
                 LinearGradient(gradient: Gradient(colors: [.white, .clear]), startPoint: .bottom, endPoint: .top)
-                    .frame(height: 10) // Adjust height as needed
+                    .frame(height: 10) 
             }
             .edgesIgnoringSafeArea(.vertical)
             )

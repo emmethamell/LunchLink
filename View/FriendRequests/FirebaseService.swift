@@ -68,7 +68,6 @@ class FriendRequestService {
             }
 
         }
-       // addToEachothersFriendLists(userUID: userUID, otherUserUID: otherUserUID)
     }
     
     func addToEachothersFriendLists(userUID: String, otherUserUID: String) {
@@ -80,6 +79,32 @@ class FriendRequestService {
                 "friends": FieldValue.arrayUnion([userUID])
             ])
         }
+    }
+    
+    func deleteFriendRequest(receiverID: String, senderID: String) {
+        let db = Firestore.firestore()
+        let friendRequestsRef = db.collection("FriendRequests")
+
+        friendRequestsRef.whereField("receiverID", isEqualTo: receiverID)
+                         .whereField("senderID", isEqualTo: senderID)
+                         .getDocuments { (querySnapshot, err) in
+                             if let err = err {
+                                 print("Error getting documents: \(err)")
+                                 return
+                             }
+
+                             if let document = querySnapshot?.documents.first {
+                                 document.reference.delete() { err in
+                                     if let err = err {
+                                         print("Error removing document: \(err)")
+                                     } else {
+                                         print("Document successfully removed!")
+                                     }
+                                 }
+                             } else {
+                                 print("No matching document found")
+                             }
+                         }
     }
     
 

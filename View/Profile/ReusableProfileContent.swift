@@ -89,7 +89,6 @@ struct ReusableProfileContent: View {
                     )
                 }
     
-                
                 Text("History")
                     .font(.title2)
                     .fontWeight(.semibold)
@@ -219,8 +218,8 @@ struct ReusableProfileContent: View {
                     var tokens: [String] = []
                     tokens.append(token)
                     NotificationHandler.shared.sendNotificationRequest(
-                        header: firstName + " " + lastName + " wants to be friends!",
-                        body: "",
+                        header: "LunchLink",
+                        body: firstName + " " + lastName + " wants to be friends!",
                         fcmTokens: tokens)
                 }
                 

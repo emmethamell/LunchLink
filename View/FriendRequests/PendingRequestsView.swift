@@ -25,6 +25,8 @@ struct PendingRequestsView: View {
     
     @State private var selectedUser: User?
     @State private var acceptedUserIDs: Set<String> = []
+    @State private var declinedUserIDs: Set<String> = []
+    
     
     
     var body: some View {
@@ -47,6 +49,8 @@ struct PendingRequestsView: View {
                             Spacer()
                             if acceptedUserIDs.contains(user.userUID) {
                                 Text("Friends!")
+                            } else if declinedUserIDs.contains(user.userUID){
+                                Text("Declined")
                             } else {
                                 Button("Accept") {
                                     print("Accepted \(user.username)")
@@ -61,6 +65,10 @@ struct PendingRequestsView: View {
                                 Button("Decline") {
                                     print("Declined \(user.username)")
                                     //TODO: Add logic to decline friend request
+                                    declinedUserIDs.insert(user.userUID)
+                                    let userService = FriendRequestService()
+                                    userService.deleteFriendRequest(receiverID: userUID, senderID: user.userUID)
+                                    
                                 }
                                 .foregroundColor(.red)
                             }
