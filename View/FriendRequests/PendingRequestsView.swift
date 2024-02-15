@@ -32,7 +32,7 @@ struct PendingRequestsView: View {
     var body: some View {
         NavigationStack {
             if showNoPendingRequestsMessage {
-                Text("No pending friend requests")
+                Text("No friend requests")
                     .foregroundColor(.gray)
                     .font(.title2)
                     .padding()

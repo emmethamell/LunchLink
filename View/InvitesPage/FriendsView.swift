@@ -31,14 +31,12 @@ struct FriendsView: View {
                     .bold()
                 Spacer()
                 
-                
-                if hasPendingRequests { // Check if there are pending requests
+                if hasPendingRequests {
                     NavigationLink {
                         PendingRequestsView(curUserUID: userUID, firstName: firstName, lastName: lastName)
                     } label: {
-                        // Display different image if there are pending requests
                         Image(systemName: "bell.badge.fill")
-                            .tint(.red) // Customize color as needed
+                            .tint(.red)
                             .scaleEffect(1.3)
                     }
                 } else {

@@ -17,6 +17,8 @@ struct InviteView: View {
     @State private var recentInvites: [Invite] = []
     
     @State private var selectedActivity: String = "Choose"
+    
+    @State private var details: String = ""
         
     @AppStorage("user_profile_url") private var profileURL: URL?
     @AppStorage("user_name") private var userName: String = ""
@@ -51,10 +53,27 @@ struct InviteView: View {
                             .font(.title)
                         
                         ActivitySelectionView(selectedActivity: $selectedActivity)
-                            .padding()
+                            //.padding()
                     
                     }
-                   // .padding()
+                    .padding()
+                
+                
+                // Let the user add details here so they can choose a time, a place, etc.
+                Text("Details:")
+                    .font(.title2)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading)
+                    
+                
+                TextField("When? Where?", text: $details, axis: .vertical)
+                    .lineLimit(2, reservesSpace: true)
+                    .font(.callout)
+                    .textFieldStyle(.roundedBorder)
+                    .padding(.leading)
+                    .padding(.trailing)
+
+                
                 
                 Button(action: createInvite) {
                     Text("Post")
@@ -88,8 +107,16 @@ struct InviteView: View {
                 //use to delete invite if needed
                 let imageReferenceID = "\(userUID)\(Date())"
                 
-                let invite = Invite(selectedActivity: selectedActivity, userName: userName, userUID: userUID, userProfileURL: profileURL, first: firstName, last: lastName)
-                try await createDocumentAtFirebase(invite)
+                if details != "" {
+                    let invite = Invite(selectedActivity: selectedActivity, userName: userName, userUID: userUID, userProfileURL: profileURL, first: firstName, last: lastName, details: details)
+                    try await createDocumentAtFirebase(invite)
+
+                } else {
+                    let invite = Invite(selectedActivity: selectedActivity, userName: userName, userUID: userUID, userProfileURL: profileURL, first: firstName, last: lastName)
+                    try await createDocumentAtFirebase(invite)
+                }
+                
+                
             }catch{
                 await setError(error)
             }
@@ -106,6 +133,7 @@ struct InviteView: View {
                 onInvite(invite)
                 //TODO: Here, once posted, clear the values and navigate to different page or something
                 selectedActivity = "Choose"
+                details = ""
                 
             }
         })

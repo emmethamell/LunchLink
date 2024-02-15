@@ -23,6 +23,8 @@ struct InviteCardView: View {
     @AppStorage("first_name") private var firstName = ""
     @AppStorage("last_name") private var lastName = ""
     
+    @State var presentPopup = false
+    
     @State private var docListner: ListenerRegistration?
     
     @State private var showingLikedUsers = false
@@ -58,6 +60,24 @@ struct InviteCardView: View {
                     .bold()
                    // .textSelection(.enabled)
                     //.padding(.vertical, 8)
+                if let details = invite.details{
+                    Button {
+                        print("pressed")
+                        presentPopup = true
+                    }label: {
+                        Image(systemName: "text.bubble.fill")
+                           
+                    }
+                    .popover(isPresented: $presentPopup, attachmentAnchor: .point(.topTrailing)){
+                        Text(details)
+                            .padding()
+                            .presentationCompactAdaptation(.none)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                    .scaleEffect(1.4)
+                    .padding(.top, 8)
+                    .padding(.bottom, 8)
+                }
                 InviteInteraction()
             }
         }
