@@ -121,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				A12086082B0691F800F6FFC4 /* InviteCardView.swift */,
+				A1AC89252B02E58500831625 /* Invite.swift */,
 				A12086052B05C93A00F6FFC4 /* ReusableInviteView.swift */,
 				A12085FE2B054AE000F6FFC4 /* FriendsView.swift */,
 			);
@@ -217,7 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				A1C9860A2AE6E3A200314A7E /* User.swift */,
-				A1AC89252B02E58500831625 /* Invite.swift */,
 				A14CF5B72B0C0F7F006E8BCD /* FriendRequest.swift */,
 			);
 			path = Model;

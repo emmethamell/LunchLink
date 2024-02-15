@@ -7,8 +7,13 @@
 
 import SwiftUI
 import UserNotifications
+import Firebase
+import FirebaseFirestore
+import FirebaseStorage
 
 struct FriendsView: View {
+    
+    @State private var hasPendingRequests = false
     
     @State private var recentInvites: [Invite] = []
     
@@ -25,13 +30,29 @@ struct FriendsView: View {
                     .padding()
                     .bold()
                 Spacer()
-                NavigationLink {
-                    PendingRequestsView(curUserUID: userUID, firstName: firstName, lastName: lastName)
-                }label:{
-                    Image(systemName: "bell")
-                        .tint(.black)
-                        .scaleEffect(1.3)
+                
+                
+                if hasPendingRequests { // Check if there are pending requests
+                    NavigationLink {
+                        PendingRequestsView(curUserUID: userUID, firstName: firstName, lastName: lastName)
+                    } label: {
+                        // Display different image if there are pending requests
+                        Image(systemName: "bell.badge.fill")
+                            .tint(.red) // Customize color as needed
+                            .scaleEffect(1.3)
+                    }
+                } else {
+                    NavigationLink {
+                        PendingRequestsView(curUserUID: userUID, firstName: firstName, lastName: lastName)
+                    } label: {
+                        Image(systemName: "bell")
+                            .tint(.black)
+                            .scaleEffect(1.3)
+                    }
                 }
+                
+                
+                
                 
                 NavigationLink {
                     SearchUserView()
@@ -48,13 +69,27 @@ struct FriendsView: View {
                 .hAlign(.center)
                 .vAlign(.center)
         }
+        .onAppear {
+            fetchPendingRequests()
+        }
     }
     
+    
+    private func fetchPendingRequests() {
+        let userService = FriendRequestService()
+        userService.fetchPendingFriendRequests(userUID: userUID) { users in
+            DispatchQueue.main.async {
+                self.hasPendingRequests = !users.isEmpty
+            }
+        }
+    }
 
     
     
 }
 
+/*
 #Preview {
     FriendsView()
 }
+*/
