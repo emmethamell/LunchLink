@@ -3,8 +3,8 @@ LunchLink is an iOS app that allows you to let all your friends know that you're
 
 <div style="display: flex;">
   <img src="mockup_invites.png" alt="Image 1" style="width: 200px; margin-right: 10px;">
-  <img src="mockup_notif.png" alt="Image 2" style="width: 200px; margin-right: 10px;">
-  <img src="mockup_post.png" alt="Image 3" style="width: 200px;">
+  <img src="mockup_post.png" alt="Image 2" style="width: 200px; margin-right: 10px;">
+  <img src="mockup_notif.png" alt="Image 3" style="width: 200px;">
 <div/>
 
 
