@@ -33,6 +33,8 @@ struct InviteView: View {
     @State private var showError: Bool = false
     @State private var errorMessage: String = ""
     
+    @FocusState private var isFocused: Bool
+    
 
     var body: some View {
         VStack {
@@ -60,20 +62,30 @@ struct InviteView: View {
                 
                 
                 // Let the user add details here so they can choose a time, a place, etc.
+                /*
                 Text("Details:")
                     .font(.title2)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading)
+                
                     
                 
                 TextField("When? Where?", text: $details, axis: .vertical)
+                    .focused($isFocused)
+                    .onChange(of: details) { newValue in
+                        guard let newValueLastChar = newValue.last else { return }
+                        if newValueLastChar == "\n" {
+                            details.removeLast()
+                            isFocused = false
+                        }
+                    }
                     .lineLimit(2, reservesSpace: true)
                     .font(.callout)
                     .textFieldStyle(.roundedBorder)
                     .padding(.leading)
                     .padding(.trailing)
 
-                
+                */
                 
                 Button(action: createInvite) {
                     Text("Post")
@@ -85,9 +97,10 @@ struct InviteView: View {
                 }
                 .disableWithOpacity(selectedActivity == "Choose")
                 .padding(.bottom, 40)
-                
+             
             }
             // end of stack
+            
 
         }
         .vAlign(.top)

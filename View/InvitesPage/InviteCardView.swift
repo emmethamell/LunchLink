@@ -60,6 +60,7 @@ struct InviteCardView: View {
                     .bold()
                    // .textSelection(.enabled)
                     //.padding(.vertical, 8)
+                /*
                 if let details = invite.details{
                     Button {
                         print("pressed")
@@ -78,6 +79,7 @@ struct InviteCardView: View {
                     .padding(.top, 8)
                     .padding(.bottom, 8)
                 }
+                */
                 InviteInteraction()
             }
         }

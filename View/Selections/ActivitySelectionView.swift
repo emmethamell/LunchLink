@@ -44,7 +44,7 @@ struct ActivitySelectionView: View {
                     //.padding(.all, 5)
                 }
             }
-            //.padding()
+            .padding()
         }
         .overlay(
             VStack {
