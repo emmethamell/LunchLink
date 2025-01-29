@@ -62,6 +62,7 @@ struct InviteView: View {
                 
                 
                 // Let the user add details here so they can choose a time, a place, etc.
+                // Removing user-generated content for now
                 /*
                 Text("Details:")
                     .font(.title2)

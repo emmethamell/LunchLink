@@ -15,6 +15,7 @@ struct User: Identifiable, Codable {
     var userEmail: String
     var userProfileURL: URL
     var friends: [String] = [] //to keep track of friends list
+    var blockedUsers: [String] = []
     var first: String
     var last: String
     var token: String
@@ -26,6 +27,7 @@ struct User: Identifiable, Codable {
         case userEmail
         case userProfileURL
         case friends
+        case blockedUsers
         case first
         case last
         case token

@@ -10,6 +10,7 @@
 		A12085FF2B054AE000F6FFC4 /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12085FE2B054AE000F6FFC4 /* FriendsView.swift */; };
 		A12086062B05C93A00F6FFC4 /* ReusableInviteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12086052B05C93A00F6FFC4 /* ReusableInviteView.swift */; };
 		A12086092B0691F800F6FFC4 /* InviteCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12086082B0691F800F6FFC4 /* InviteCardView.swift */; };
+		A130C6722D49BED600ADDA5E /* UserBlockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A130C6712D49BED600ADDA5E /* UserBlockService.swift */; };
 		A13ACE852B08428200AF5B2F /* SearchUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13ACE842B08428200AF5B2F /* SearchUserView.swift */; };
 		A14CF5B22B0ADCBE006E8BCD /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = A14CF5B12B0ADCBE006E8BCD /* SwiftMessages */; };
 		A14CF5B82B0C0F7F006E8BCD /* FriendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14CF5B72B0C0F7F006E8BCD /* FriendRequest.swift */; };
@@ -65,6 +66,7 @@
 		A12085FE2B054AE000F6FFC4 /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
 		A12086052B05C93A00F6FFC4 /* ReusableInviteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableInviteView.swift; sourceTree = "<group>"; };
 		A12086082B0691F800F6FFC4 /* InviteCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteCardView.swift; sourceTree = "<group>"; };
+		A130C6712D49BED600ADDA5E /* UserBlockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBlockService.swift; sourceTree = "<group>"; };
 		A13ACE842B08428200AF5B2F /* SearchUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUserView.swift; sourceTree = "<group>"; };
 		A14CF5B72B0C0F7F006E8BCD /* FriendRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRequest.swift; sourceTree = "<group>"; };
 		A14F84C92B03046200349A9B /* ActivitySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitySelectionView.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				A1C9860C2AE7032900314A7E /* LoadingView.swift */,
 				A1C986132AEF6DA900314A7E /* View+Extensions.swift */,
 				A164038D2B5B40BB0019EF8F /* EmptyView.swift */,
+				A130C6712D49BED600ADDA5E /* UserBlockService.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				A12086062B05C93A00F6FFC4 /* ReusableInviteView.swift in Sources */,
 				A1766EF62B4B6D2E00F665FC /* ImagePickerView.swift in Sources */,
 				A1C9860B2AE6E3A200314A7E /* User.swift in Sources */,
+				A130C6722D49BED600ADDA5E /* UserBlockService.swift in Sources */,
 				A1C986162AEF6E5100314A7E /* MainView.swift in Sources */,
 				A14CF5B82B0C0F7F006E8BCD /* FriendRequest.swift in Sources */,
 				A13ACE852B08428200AF5B2F /* SearchUserView.swift in Sources */,
