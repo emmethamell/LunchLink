@@ -52,34 +52,11 @@ struct InviteCardView: View {
                     .font(.caption2)
                     .foregroundColor(.gray)
                 
-                //Text(invite.publishedDate.formatted(date: .numeric, time: .shortened))
 
                 Text("\(invite.first) \(invite.last) wants to ")
                     +
                 Text(invite.selectedActivity)
                     .bold()
-                   // .textSelection(.enabled)
-                    //.padding(.vertical, 8)
-                /*
-                if let details = invite.details{
-                    Button {
-                        print("pressed")
-                        presentPopup = true
-                    }label: {
-                        Image(systemName: "text.bubble.fill")
-                           
-                    }
-                    .popover(isPresented: $presentPopup, attachmentAnchor: .point(.topTrailing)){
-                        Text(details)
-                            .padding()
-                            .presentationCompactAdaptation(.none)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                    .scaleEffect(1.4)
-                    .padding(.top, 8)
-                    .padding(.bottom, 8)
-                }
-                */
                 InviteInteraction()
             }
         }
