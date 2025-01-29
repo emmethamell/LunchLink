@@ -129,40 +129,46 @@ struct ReusableInviteView: View {
     
     func fetchInvites() async {
         
-        if basedOnUID{
-            do{
+        if basedOnUID {
+            do {
                 var query: Query!
                 
-                
-                if let paginationDoc{
-                        query = Firestore.firestore().collection("Invites")
-                            .order(by: "publishedDate", descending: true)
-                            .start(afterDocument: paginationDoc)
-                            .limit(to: 20)
+                if let paginationDoc {
+                    query = Firestore.firestore().collection("Invites")
+                        .order(by: "publishedDate", descending: true)
+                        .start(afterDocument: paginationDoc)
+                        .limit(to: 20)
                 } else {
-                 
                     query = Firestore.firestore().collection("Invites")
                         .order(by: "publishedDate", descending: true)
                         .limit(to: 20)
                 }
-              
-                    query = query
-                        .whereField("userUID" , isEqualTo: uid)
                 
+                query = query.whereField("userUID", isEqualTo: uid)
                 
                 let docs = try await query.getDocuments()
                 print("fetched \(docs.documents.count)")
-                let fetchedInvites = docs.documents.compactMap{ doc -> Invite? in
+                
+                let fetchedInvites = docs.documents.compactMap { doc -> Invite? in
                     try? doc.data(as: Invite.self)
                 }
-                await MainActor.run(body: {
+                
+                await MainActor.run {
                     invites.append(contentsOf: fetchedInvites)
                     paginationDoc = docs.documents.last
                     isFetching = false
-                })
-            }catch{
+                    
+                    // filter out blocked users invites
+                    if let currentUser = curUser {
+                        invites.removeAll { invite in
+                            currentUser.blockedUsers.contains(invite.userUID)
+                        }
+                    }
+                }
+            } catch {
                 print(error.localizedDescription)
             }
+            
         } else {
             let db = Firestore.firestore()
             
@@ -187,12 +193,14 @@ struct ReusableInviteView: View {
                     let newInvites = snapshot.documents.compactMap { doc in
                         try? doc.data(as: Invite.self)
                     }
+                    
                     if newInvites.isEmpty {
                         isFetching = false
                         break
                     }
                     
                     invites.append(contentsOf: newInvites)
+                    
                     if let lastDocument = snapshot.documents.last {
                         paginationDoc = lastDocument
                     } else {
@@ -203,10 +211,20 @@ struct ReusableInviteView: View {
                     break
                 }
             }
+            
+            // filter when not for specific user
+            await MainActor.run {
+                if let currentUser = curUser {
+                    invites.removeAll { invite in
+                        currentUser.blockedUsers.contains(invite.userUID)
+                    }
+                }
+            }
         }
     }
     
 }
+
 
 extension Array {
     func chunked(into size: Int) -> [[Element]] {
