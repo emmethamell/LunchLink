@@ -34,7 +34,6 @@ struct Friendship_Button: View {
                 if buttonMessage == "Pending" {
                   
                 } else if buttonMessage == "Friends!" {
-                    //TODO: Add popup screen that asks them if they want to remove the friend
                     self.showAlert = true
 
                     print("already friends")

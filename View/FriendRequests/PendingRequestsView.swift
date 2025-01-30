@@ -64,7 +64,6 @@ struct PendingRequestsView: View {
                                 
                                 Button("Decline") {
                                     print("Declined \(user.username)")
-                                    //TODO: Add logic to decline friend request
                                     declinedUserIDs.insert(user.userUID)
                                     let userService = FriendRequestService()
                                     userService.deleteFriendRequest(receiverID: userUID, senderID: user.userUID)
@@ -105,8 +104,3 @@ struct PendingRequestsView: View {
 }
 
 
-/*
-#Preview {
-    PendingRequestsView()
-}
-*/

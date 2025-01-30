@@ -145,7 +145,6 @@ struct InviteView: View {
                 isLoading = false
                 showCheckmarkNotification()
                 onInvite(invite)
-                //TODO: Here, once posted, clear the values and navigate to different page or something
                 selectedActivity = "Choose"
                 details = ""
                 

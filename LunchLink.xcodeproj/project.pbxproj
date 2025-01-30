@@ -44,6 +44,7 @@
 		A1D4B3972B36744700407DF0 /* LikedUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4B3962B36744700407DF0 /* LikedUsersView.swift */; };
 		A1D4B39B2B37965F00407DF0 /* LikedUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D4B39A2B37965F00407DF0 /* LikedUsersViewModel.swift */; };
 		A1D4B39D2B3F826A00407DF0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A1D4B39C2B3F826A00407DF0 /* .gitignore */; };
+		A1E58C902D4BF1F500BDDDC3 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E58C8F2D4BF1F500BDDDC3 /* Report.swift */; };
 		A1EB9D482B0C326C00A26252 /* Friendship Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1EB9D472B0C326C00A26252 /* Friendship Button.swift */; };
 		A1FCE4272B5066630057EA99 /* PendingRequestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FCE4262B5066630057EA99 /* PendingRequestsView.swift */; };
 		A1FCE42C2B506D130057EA99 /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FCE42B2B506D130057EA99 /* FirebaseService.swift */; };
@@ -94,6 +95,7 @@
 		A1D4B3962B36744700407DF0 /* LikedUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUsersView.swift; sourceTree = "<group>"; };
 		A1D4B39A2B37965F00407DF0 /* LikedUsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedUsersViewModel.swift; sourceTree = "<group>"; };
 		A1D4B39C2B3F826A00407DF0 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		A1E58C8F2D4BF1F500BDDDC3 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		A1EB9D472B0C326C00A26252 /* Friendship Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Friendship Button.swift"; sourceTree = "<group>"; };
 		A1FCE4262B5066630057EA99 /* PendingRequestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingRequestsView.swift; sourceTree = "<group>"; };
 		A1FCE42B2B506D130057EA99 /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
@@ -218,9 +220,10 @@
 		A1C986002AE61BDC00314A7E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				A14CF5B72B0C0F7F006E8BCD /* FriendRequest.swift */,
 				A1AC89252B02E58500831625 /* Invite.swift */,
 				A1C9860A2AE6E3A200314A7E /* User.swift */,
-				A14CF5B72B0C0F7F006E8BCD /* FriendRequest.swift */,
+				A1E58C8F2D4BF1F500BDDDC3 /* Report.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				A1FCE4272B5066630057EA99 /* PendingRequestsView.swift in Sources */,
 				A1FCE42C2B506D130057EA99 /* FirebaseService.swift in Sources */,
 				A16897752B3518ED00E18C4D /* NotificationHandler.swift in Sources */,
+				A1E58C902D4BF1F500BDDDC3 /* Report.swift in Sources */,
 				A1C986142AEF6DA900314A7E /* View+Extensions.swift in Sources */,
 				A1C986112AEF6CF000314A7E /* RegisterView.swift in Sources */,
 				A1C9860D2AE7032900314A7E /* LoadingView.swift in Sources */,

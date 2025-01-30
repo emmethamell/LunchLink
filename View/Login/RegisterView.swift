@@ -45,13 +45,11 @@ struct RegisterView: View{
                 .font(.title3)
                 .hAlign(.leading)
 
-         //   ViewThatFits {
+      
                 ScrollView(.vertical, showsIndicators: false) {
                     HelperView()
                 }
                 
-              //  HelperView()
-          //  }
             
             HStack{
                 Text("Already have an account?")
@@ -64,7 +62,6 @@ struct RegisterView: View{
                 .foregroundColor(.black)
             }
             .font(.callout)
-            //.vAlign(.bottom) removing this fixed whitespace above keyboard
         }
         .vAlign(.top)
         .padding(15)
@@ -79,7 +76,6 @@ struct RegisterView: View{
                 userProfilePicData = croppedImage.jpegData(compressionQuality: 1.0)
             }
         }
-        //.photosPicker(isPresented: $showImagePicker, selection: $photoItem)
         .onChange(of: photoItem) { newValue in
             if let newValue{
                 Task{
@@ -145,7 +141,6 @@ struct RegisterView: View{
             
             
             Button(action: registerUser){
-                //login button
                 Text("Sign up")
                     .foregroundColor(.white)
                     .hAlign(.center)
@@ -156,51 +151,104 @@ struct RegisterView: View{
         }
     }
     
-    func registerUser(){
+    func registerUser() {
         isLoading = true
         closeKeyboard()
-        Task{
-            do{
+        
+        Task {
+            do {
                 print("task called")
 
                 try await Auth.auth().createUser(withEmail: emailID, password: password)
                 print("account created")
 
-                guard let userUID = Auth.auth().currentUser?.uid else{return}
-                guard let imageData = userProfilePicData else {return}
+                guard let userUID = Auth.auth().currentUser?.uid else { return }
+                guard let imageData = userProfilePicData else { return }
+                
+                // Upload Image to Firebase Storage
                 let storageRef = Storage.storage().reference().child("Profile_Images").child(userUID)
                 let _ = try await storageRef.putDataAsync(imageData)
-
                 let downloadURL = try await storageRef.downloadURL()
 
-                let user = User(username: userName, userUID: userUID, userEmail: emailID, userProfileURL: downloadURL, first: firstName, last: lastName, token: userToken)
+                // Call the ai moderation to see if safe
+                let isSafe = await moderateImage(url: downloadURL.absoluteString)
 
-                let _ = try Firestore.firestore().collection("Users").document(userUID).setData(from: user, completion: {
-                    error in
-                    if error == nil{
-                        // print saved succesfully
-                        print("Saved Succesfully")
-                        userNameStored = userName
-                        firstNameStored = firstName
-                        lastNameStored = lastName
-                        self.userUID = userUID
-                        profileURL = downloadURL
-                        logStatus = true
+                if isSafe {
+                    let user = User(username: userName, userUID: userUID, userEmail: emailID, userProfileURL: downloadURL, first: firstName, last: lastName, token: userToken)
+
+                    let _ = try Firestore.firestore().collection("Users").document(userUID).setData(from: user) { error in
+                        if error == nil {
+                            print("Saved Successfully")
+                            userNameStored = userName
+                            firstNameStored = firstName
+                            lastNameStored = lastName
+                            self.userUID = userUID
+                            profileURL = downloadURL
+                            logStatus = true
+                        }
                     }
-                })
-            }catch{
-                // delete created account in case of failure
+                } else {
+                    // Image flagged as inappropriate, delete it
+                    try await storageRef.delete()
+                    try await Auth.auth().currentUser?.delete()
+                    await setError(NSError(domain: "ImageModeration", code: 1, userInfo: [NSLocalizedDescriptionKey: "Profile picture violates content policy."]))
+                }
+            } catch {
+                // Delete account if failure occurs
                 try await Auth.auth().currentUser?.delete()
                 await setError(error)
             }
         }
     }
+    
     func setError(_ error: Error)async{
         await MainActor.run(body: {
             errorMessage = error.localizedDescription
             showError.toggle()
             isLoading = false
         })
+    }
+    
+    func moderateImage(url: String) async -> Bool {
+        //TODO: Add API key as environment variable
+        let apiKey = ""
+        let endpoint = "https://vision.googleapis.com/v1/images:annotate?key=\(apiKey)"
+        
+        let requestBody: [String: Any] = [
+            "requests": [
+                [
+                    "image": ["source": ["imageUri": url]],
+                    "features": [["type": "SAFE_SEARCH_DETECTION"]]
+                ]
+            ]
+        ]
+        
+        guard let jsonData = try? JSONSerialization.data(withJSONObject: requestBody) else {
+            return false
+        }
+
+        var request = URLRequest(url: URL(string: endpoint)!)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = jsonData
+
+        do {
+            let (data, _) = try await URLSession.shared.data(for: request)
+            let response = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+            
+            if let responses = response?["responses"] as? [[String: Any]],
+               let safeSearch = responses.first?["safeSearchAnnotation"] as? [String: String] {
+                
+                let adult = safeSearch["adult"] ?? "UNKNOWN"
+                let violence = safeSearch["violence"] ?? "UNKNOWN"
+                
+                return adult == "VERY_UNLIKELY" && violence == "VERY_UNLIKELY"
+            }
+        } catch {
+            print("Error in image moderation: \(error.localizedDescription)")
+        }
+        
+        return false
     }
 }
 

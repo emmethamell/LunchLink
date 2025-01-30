@@ -21,6 +21,7 @@ struct ReusableProfileContent: View {
 
     @State private var friendRequestStatus: FriendRequest.RequestStatus?
     @State private var buttonMessage: String = ""
+    @State private var showReportConfirmation = false
     
     @State private var showError: Bool = false
     @State private var errorMessage: String = ""
@@ -31,6 +32,26 @@ struct ReusableProfileContent: View {
     @State var curRequest: FriendRequest = FriendRequest(senderID: "", receiverID: "", status: .pending) //CHANGED
     
     @State private var myProfile: User?
+    
+    func submitReport() async {
+        guard let currentUID = Auth.auth().currentUser?.uid else { return }
+
+        let report = Report(
+            reporterUID: currentUID,
+            reportedUserUID: user.userUID,
+            reportedPostID: nil,
+            reason: "Inappropriate behavior",
+            additionalInfo: nil,
+            timestamp: Date()
+        )
+
+        do {
+            let _ = try await Firestore.firestore().collection("Reports").addDocument(from: report)
+            print("Report submitted successfully")
+        } catch {
+            print("Error submitting report: \(error.localizedDescription)")
+        }
+    }
     
     var body: some View {
         NavigationStack {
@@ -80,11 +101,9 @@ struct ReusableProfileContent: View {
             .navigationTitle(user.username)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                // Show the toolbar ONLY if looking at someone else's profile
                 if userUID != user.userUID {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Menu {
-                            // (Optional) Add your "Add/Remove Friend" here if you want
                             Divider()
                             
                             // BLOCK/UNBLOCK
@@ -97,7 +116,6 @@ struct ReusableProfileContent: View {
                                                     currentUserID: currentUser.userUID,
                                                     blockedUserID: user.userUID
                                                 )
-                                                // Refresh local copy of currentUser (myProfile) in the background
                                                 await fetchCurrentUser()
                                             } catch {
                                                 print("Error unblocking user: \(error.localizedDescription)")
@@ -120,7 +138,12 @@ struct ReusableProfileContent: View {
                                     }
                                 }
                             }
-                            
+
+                            // REPORT USER
+                            Button("Report \(user.username)", role: .destructive) {
+                                showReportConfirmation = true
+                            }
+
                         } label: {
                             Image(systemName: "ellipsis")
                                 .rotationEffect(.init(degrees: 90))
@@ -128,6 +151,16 @@ struct ReusableProfileContent: View {
                         }
                     }
                 }
+            }
+            .alert("Report User", isPresented: $showReportConfirmation) {
+                Button("Report", role: .destructive) {
+                    Task {
+                        await submitReport()
+                    }
+                }
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text("Are you sure you want to report \(user.username)?")
             }
             // Alert for errors
             .alert(errorMessage, isPresented: $showError) {}
@@ -164,10 +197,11 @@ struct ReusableProfileContent: View {
     }
 }
 
+
+
 // MARK: - Firestore / Friend Request Logic
 extension ReusableProfileContent {
     
-    /// Fetch current user's doc to check `blockedUsers`
     func fetchCurrentUser() async {
         guard let currentUID = Auth.auth().currentUser?.uid else { return }
         

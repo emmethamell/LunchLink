@@ -75,27 +75,33 @@ struct SearchUserView: View {
         })
     }
     
-    func searchUsers()async{
-        do{
-            
+    func searchUsers() async {
+        guard let myUID = Auth.auth().currentUser?.uid else { return }
+        
+        do {
             let documents = try await Firestore.firestore().collection("Users")
                 .whereField("username", isGreaterThanOrEqualTo: searchText)
                 .whereField("username", isLessThanOrEqualTo: "\(searchText)\u{f8ff}")
                 .getDocuments()
             
-            let users = try documents.documents.compactMap{ doc -> User? in
-                try doc.data(as: User.self)
+            let users = try documents.documents.compactMap { doc -> User? in
+                let user = try doc.data(as: User.self)
+                // Exclude users who have blocked the current user
+                if user.blockedUsers.contains(myUID) {
+                    return nil
+                }
+                return user
             }
             
-            await MainActor.run(body: {
+            await MainActor.run {
                 fetchedUsers = users
-                for user in fetchedUsers{
-                }
-            })
-        }catch{
-            print(error.localizedDescription)
+            }
+            
+        } catch {
+            print("Error searching users: \(error.localizedDescription)")
         }
     }
+
 }
 
 #Preview {
